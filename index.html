@@ -3,14 +3,13 @@
 <head>
 </head>
 <body>
-<div id="tree">000</div>
+<ul id="tree">loading...</ul>
 <script src="/library/jquery-3.2.1.min.js"></script>
 <script>
 $(document).ready(function(){
 	$.get("https://api.github.com/repos/hiyouga/hiyouga.github.io/contents/articles", function(data){
 		$.each(data,function(index,item){
-		var page = index + 1;
-		tree += page + "<a href=\"" + item.path + "\">" + item.name + "</a><br />";		
+		tree += "<li><a href=\"" + item.path + "\">" + item.name + "</a></li>";		
 		});
 		$("#tree").html(tree);
 	});
