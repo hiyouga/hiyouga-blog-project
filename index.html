@@ -8,7 +8,11 @@
 <script>
 $(document).ready(function(){
 	$.get("https://api.github.com/repos/hiyouga/hiyouga.github.io/contents/articles", function(data){
-		$("#tree").html(data[0].name);
+		$.each(data,function(index,item){
+		var page = index + 1;
+		tree += page + "<a href=\"" + item.path + "\">" + item.name + "</a><br />";		
+		});
+		$("#tree").html(tree);
 	});
 });
 </script>
