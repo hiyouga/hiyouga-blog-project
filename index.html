@@ -6,9 +6,11 @@
 <div id="tree">000</div>
 <script src="/library/jquery-3.2.1.min.js"></script>
 <script>
-$.get("https://api.github.com/repos/hiyouga/hiyouga.github.io/contents/articles", function(data){
-	data = JSON.parse(data);
-	$("#tree").text(data.name);
+$(document).ready(function(){
+	$.get("https://api.github.com/repos/hiyouga/hiyouga.github.io/contents/articles", function(data){
+		data = JSON.parse(data);
+		$("#tree").text(data.name);
+	});
 });
 </script>
 </body>
