@@ -9,7 +9,7 @@
 $(document).ready(function(){
 	$.get("https://api.github.com/repos/hiyouga/hiyouga.github.io/contents/articles", function(data){
 		data = JSON.parse(data);
-		$("#tree").text(data[0].name);
+		alert(data[0].name);
 	});
 });
 </script>
