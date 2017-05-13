@@ -8,8 +8,7 @@
 <script>
 $(document).ready(function(){
 	$.get("https://api.github.com/repos/hiyouga/hiyouga.github.io/contents/articles", function(data){
-		data = JSON.parse(data);
-		alert(data);
+		$("#tree").html(data[0].name);
 	});
 });
 </script>
