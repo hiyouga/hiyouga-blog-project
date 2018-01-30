@@ -22,8 +22,8 @@ $(document).ready(function(){
 
 function GetOneIssue(i){
 	$.get("https://api.github.com/repos/hiyouga/hiyouga-blog-project/issues/"+i, function(data){
-		$("#data #title").text(data.title);
-		$("#data #content").text(data.body.replace('\r\n','<br />'));
+		$("#data #title").html(data.title);
+		$("#data #content").html(data.body.replace('\r\n','<br />'));
 	});
 }
 
