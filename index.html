@@ -8,21 +8,23 @@
 <script src="/library/jquery-3.2.1.min.js"></script>
 <script>
 $(document).ready(function(){
-	$.get("https://api.github.com/repositories/91178023/contents/articles", function(data){
-		$.each(data,function(index,item){
-			articles += "<li><a target=\"_blank\" href=\"" + item.path + "\">" + item.name + "</a></li>";
-		});
-		//articles = articles.replace('[object HTMLUListElement]','');
-		$("#articles").html(articles);
-	});
+	GetIssues();
+	GetArticles();
+});
+function GetIssues(){
 	$.get("https://api.github.com/repos/hiyouga/hiyouga-blog-project/issues", function(data){
 		$.each(data,function(index,item){
-			issues += "<li><a target=\"_blank\" href=\"" + item.path + "\">" + item.name + "</a></li>";
+			$("#issues").append("<li><a href=\"/?issues=" + item.number + "\">" + item.title + "</a></li>");
 		});
-		//issues = issues.replace('[object HTMLUListElement]','');
-		$("#issues").html(issues);
 	});
-});
+}
+function GetArticles(){
+	$.get("https://api.github.com/repositories/91178023/contents/articles", function(data){
+		$.each(data, function(index, item){
+			$("#articles").append("<li><a target=\"_blank\" href=\"" + item.path + "\">" + item.name + "</a></li>");
+		});
+	});
+}
 </script>
 </body>
 </html>
