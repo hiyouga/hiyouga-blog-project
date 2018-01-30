@@ -3,16 +3,24 @@
 <head>
 </head>
 <body>
-<ul id="tree">loading...</ul>
+<ul id="articles">loading...</ul>
+<ul id="issues">loading...</ul>
 <script src="/library/jquery-3.2.1.min.js"></script>
 <script>
 $(document).ready(function(){
-	$.get("https://api.github.com/repos/hiyouga/hiyouga.github.io/contents/articles", function(data){
+	$.get("https://api.github.com/repositories/91178023/contents/articles", function(data){
 		$.each(data,function(index,item){
-			tree += "<li><a target=\"_blank\" href=\"" + item.path + "\">" + item.name + "</a></li>";
+			articles += "<li><a target=\"_blank\" href=\"" + item.path + "\">" + item.name + "</a></li>";
 		});
-		tree=tree.replace('[object HTMLUListElement]','');
-		$("#tree").html(tree);
+		//articles = articles.replace('[object HTMLUListElement]','');
+		$("#articles").html(articles);
+	});
+	$.get("https://api.github.com/repos/hiyouga/hiyouga-blog-project/issues", function(data){
+		$.each(data,function(index,item){
+			issues += "<li><a target=\"_blank\" href=\"" + item.path + "\">" + item.name + "</a></li>";
+		});
+		//issues = issues.replace('[object HTMLUListElement]','');
+		$("#issues").html(issues);
 	});
 });
 </script>
