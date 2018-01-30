@@ -1,30 +1,21 @@
 <!DOCTYPE html>
-<html>
+<html lang="zh">
 <head>
+	<meta http-equiv="Content-Type" content="text/html;charset=UTF-8" />
+	<meta name="author" content="hoshi_hiyouga,hiyouga@buaa.edu.cn" />
+	<meta name="viewport" content="width=device-width,initial-scale=1.0">
+	<title>Hiyouga Space</title>
+	<link rel="icon" type="image/ico" href="imgs/favicon.ico" />
+	<link rel="stylesheet" href="libs/css/bootstrap.min.css" />
+	<link rel="stylesheet" href="libs/css/core.css" />
 </head>
 <body>
-<ul id="articles">loading...</ul>
-<ul id="issues">loading...</ul>
-<script src="/library/jquery-3.2.1.min.js"></script>
-<script>
-$(document).ready(function(){
-	GetIssues();
-	GetArticles();
-});
-function GetIssues(){
-	$.get("https://api.github.com/repos/hiyouga/hiyouga-blog-project/issues", function(data){
-		$.each(data,function(index,item){
-			$("#issues").append("<li><a href=\"/?issues=" + item.number + "\">" + item.title + "</a></li>");
-		});
-	});
-}
-function GetArticles(){
-	$.get("https://api.github.com/repositories/91178023/contents/articles", function(data){
-		$.each(data, function(index, item){
-			$("#articles").append("<li><a target=\"_blank\" href=\"" + item.path + "\">" + item.name + "</a></li>");
-		});
-	});
-}
-</script>
+	<div>
+		<ul id="articles">loading...</ul>
+		<ul id="issues">loading...</ul>
+	</div>
+	<script src="libs/js/jquery-3.3.1.min.js"></script>
+	<script src="libs/js/bootstrap.min.js"></script>
+	<script src="libs/js/core.js"></script>
 </body>
 </html>
