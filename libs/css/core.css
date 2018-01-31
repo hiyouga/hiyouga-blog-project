@@ -1,0 +1,121 @@
+body{
+	font-family: Microsoft Yahei;
+}
+
+#blog-main img{
+	width: 100%;
+	height: auto;
+}
+
+.blog-main-after p{
+	white-space: pre-wrap;
+}
+
+#headcontainer{
+	width: 100%;
+	margin: 0 auto;
+	position: relative;
+	margin-bottom: 2rem!important;
+}
+#headimg{
+	display: none;
+	width: 100%;
+	height: auto;
+}
+#hshade{
+	display: none;
+	position: absolute;
+	width: 100%;
+	height: 100%;
+	background: -webkit-linear-gradient(left, rgba(255, 255, 255,0.9), rgba(0, 0, 0, 0) 15%, rgba(0, 0, 0, 0) 85%, rgba(255, 255, 255,0.9));
+}
+#mainloader{
+	display: none;
+}
+#sideloader{
+	display: none;
+}
+.blog-post {
+  margin-bottom: 2rem;
+}
+.blog-post-title {
+  margin-bottom: .25rem;
+  font-size: 2rem;
+}
+.blog-post-meta {
+  margin-bottom: 1.25rem;
+  color: #999;
+}
+.blog-footer {
+	padding: 2rem 0;
+	color: #999;
+	text-align: center;
+	background-color: #f9f9f9;
+	border-top: .05rem solid #e5e5e5;
+}
+.blog-footer p:last-child{
+	margin-bottom: 0;
+}
+
+/* Loader */
+.loader--audioWave {
+	margin: 0 auto;
+	box-sizing: content-box!important;
+	width: 3em;
+	height: 2em;
+	background: linear-gradient(#9b59b6, #9b59b6) 0 50%, linear-gradient(#9b59b6, #9b59b6) 0.625em 50%, linear-gradient(#9b59b6, #9b59b6) 1.25em 50%, linear-gradient(#9b59b6, #9b59b6) 1.875em 50%, linear-gradient(#9b59b6, #9b59b6) 2.5em 50%;
+	background-repeat: no-repeat;
+	background-size: 0.5em 0.25em, 0.5em 0.25em, 0.5em 0.25em, 0.5em 0.25em, 0.5em 0.25em;
+	animation: audioWave 1.5s linear infinite;
+}
+@keyframes audioWave {
+  25% {
+    background: linear-gradient(#3498db, #3498db) 0 50%, linear-gradient(#9b59b6, #9b59b6) 0.625em 50%, linear-gradient(#9b59b6, #9b59b6) 1.25em 50%, linear-gradient(#9b59b6, #9b59b6) 1.875em 50%, linear-gradient(#9b59b6, #9b59b6) 2.5em 50%;
+    background-repeat: no-repeat;
+    background-size: 0.5em 2em, 0.5em 0.25em, 0.5em 0.25em, 0.5em 0.25em, 0.5em 0.25em;
+  }
+  37.5% {
+    background: linear-gradient(#9b59b6, #9b59b6) 0 50%, linear-gradient(#3498db, #3498db) 0.625em 50%, linear-gradient(#9b59b6, #9b59b6) 1.25em 50%, linear-gradient(#9b59b6, #9b59b6) 1.875em 50%, linear-gradient(#9b59b6, #9b59b6) 2.5em 50%;
+    background-repeat: no-repeat;
+    background-size: 0.5em 0.25em, 0.5em 2em, 0.5em 0.25em, 0.5em 0.25em, 0.5em 0.25em;
+  }
+  50% {
+    background: linear-gradient(#9b59b6, #9b59b6) 0 50%, linear-gradient(#9b59b6, #9b59b6) 0.625em 50%, linear-gradient(#3498db, #3498db) 1.25em 50%, linear-gradient(#9b59b6, #9b59b6) 1.875em 50%, linear-gradient(#9b59b6, #9b59b6) 2.5em 50%;
+    background-repeat: no-repeat;
+    background-size: 0.5em 0.25em, 0.5em 0.25em, 0.5em 2em, 0.5em 0.25em, 0.5em 0.25em;
+  }
+  62.5% {
+    background: linear-gradient(#9b59b6, #9b59b6) 0 50%, linear-gradient(#9b59b6, #9b59b6) 0.625em 50%, linear-gradient(#9b59b6, #9b59b6) 1.25em 50%, linear-gradient(#3498db, #3498db) 1.875em 50%, linear-gradient(#9b59b6, #9b59b6) 2.5em 50%;
+    background-repeat: no-repeat;
+    background-size: 0.5em 0.25em, 0.5em 0.25em, 0.5em 0.25em, 0.5em 2em, 0.5em 0.25em;
+  }
+  75% {
+    background: linear-gradient(#9b59b6, #9b59b6) 0 50%, linear-gradient(#9b59b6, #9b59b6) 0.625em 50%, linear-gradient(#9b59b6, #9b59b6) 1.25em 50%, linear-gradient(#9b59b6, #9b59b6) 1.875em 50%, linear-gradient(#3498db, #3498db) 2.5em 50%;
+    background-repeat: no-repeat;
+    background-size: 0.5em 0.25em, 0.5em 0.25em, 0.5em 0.25em, 0.5em 0.25em, 0.5em 2em;
+  }
+}
+.loader--spinningDisc{
+	margin: 0 auto;
+	box-sizing: content-box!important;
+	border: solid 0.5em #9b59b6;
+	border-right-color: transparent;
+	border-left-color: transparent;
+	padding: 0.5em;
+	width: 2em;
+	height: 2em;
+	border-radius: 50%;
+	background: #3498db;
+	background-clip: content-box;
+	animation: spinDisc 1.5s linear infinite;
+}
+@keyframes spinDisc{
+	50% {
+		border-top-color: #3498db;
+		border-bottom-color: #3498db;
+		background-color: #2ecc71;
+	}
+	100% {
+		transform: rotate(1turn);
+	}
+}
