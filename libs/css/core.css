@@ -12,6 +12,13 @@ blockquote{
 	display: none;
 }
 
+#avatar{
+	margin: 0 auto;
+	display: table-cell;
+	width: 40%;
+	height: auto;
+}
+
 /* Header */
 
 #headcontainer{
