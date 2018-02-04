@@ -45,16 +45,16 @@ blockquote{
 
 /* Blog */
 
-#blog-main img{
+#blog-main img {
 	max-width: 100%;
 	height: auto;
 }
 
-.blog-main{
+.blog-main {
 	word-break: break-all;
 }
 
-.blog-main-after p{
+.blog-main-after p, .blog-main-after li {
 	white-space: pre-wrap;
 	word-break: break-all;
 }
