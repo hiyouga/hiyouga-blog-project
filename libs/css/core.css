@@ -28,7 +28,7 @@ blockquote{
 }
 
 #headimg{
-	max-width: 100%;
+	width: 100%;
 	height: auto;
 }
 
@@ -46,7 +46,7 @@ blockquote{
 /* Blog */
 
 #blog-main img{
-	width: 100%;
+	max-width: 100%;
 	height: auto;
 }
 
