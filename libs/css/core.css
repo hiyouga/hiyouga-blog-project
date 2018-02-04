@@ -54,7 +54,7 @@ blockquote{
 	word-break: break-all;
 }
 
-.blog-main-after p, .blog-main-after li {
+.blog-main-after p {
 	white-space: pre-wrap;
 	word-break: break-all;
 }
