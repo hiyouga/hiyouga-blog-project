@@ -60,7 +60,8 @@ function GetOneBlog(i){
 		html += "<p>" + marked(blogtext) + "</p>";
 		html += "</div><!-- /.blog-post -->";
 		$("#blog-main").append(html);
-		PrettifyCode();
+		PrettifyCode(); //highlight.js
+		$.getScript("https://cdn.bootcss.com/mathjax/2.7.2/MathJax.js?config=TeX-AMS-MML_HTMLorMML"); //MathJax.js
 	});
 }
 
