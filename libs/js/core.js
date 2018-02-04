@@ -155,3 +155,24 @@ function goback(){
 	//window.history.go(-1);
 	window.location.href = '?type=0';
 }
+
+//Backtop
+
+var THRESHOLD = 50;
+var $top = $('.back-to-top');
+
+$(window).on('scroll', function () {
+	$top.toggleClass('back-to-top-on', window.pageYOffset > THRESHOLD);
+	var scrollTop = $(window).scrollTop();
+	var docHeight = $('#content').height();
+	var winHeight = $(window).height();
+	var contentMath = (docHeight > winHeight) ? (docHeight - winHeight) : ($(document).height() - winHeight);
+	var scrollPercent = (scrollTop) / (contentMath);
+	var scrollPercentRounded = Math.round(scrollPercent*100);
+	var scrollPercentMaxed = (scrollPercentRounded > 100) ? 100 : scrollPercentRounded;
+	$('#scrollpercent>span').html(scrollPercentMaxed);
+});
+
+$top.on('click', function () {
+	$('body').velocity('scroll');
+});

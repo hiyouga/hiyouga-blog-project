@@ -10,6 +10,7 @@
 
 	<link rel="icon" type="image/ico" href="imgs/favicon.ico" />
 	<link rel="stylesheet" href="libs/css/bootstrap.min.css" />
+	<link rel="stylesheet" href="https://cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css" />
 	<link rel="stylesheet" href="libs/css/highlight-github.min.css" />
 	<link rel="stylesheet" href="libs/css/core.css" />
 </head>
@@ -58,7 +59,10 @@
 			<div id="blog-main" class="col-md-8 blog-main">
 				<!-- Main content -->
 				<div id="backbtn" class="p-2">
-					<button type="button" class="btn btn-outline-dark" onclick="goback()">&lt; 返回</button>
+					<button type="button" class="btn btn-outline-dark" onclick="goback()">
+						<i class="fa fa-arrow-left"></i>
+						<span>返回</span>
+					</button>
 				</div>
 				<div id="mainloader" class="p-2">
 					<div class="loader--spinningDisc"></div>
@@ -88,17 +92,30 @@
 		</div><!-- /.row -->
 	</main><!-- /.container -->
 	<footer class="blog-footer">
-		<p>&copy;2014-2018 Hiyouga Project. Powered by GitHub Pages</p>
+		<p>&copy;2014-2018 Hiyouga Project. Powered by GitHub Pages.</p>
 		<p>
 			<a href="#">Back to top</a>
 		</p>
 	</footer>
+	<div class="back-to-top">
+		<i class="fa fa-arrow-up"></i>
+		<span id="scrollpercent"><span>0</span>%</span>
+	</div>
 	<!-- JavaScript -->
 	<script src="libs/js/jquery-3.3.1.min.js"></script>
+	<script src="libs/js/velocity.min.js"></script>
+	<script src="libs/js/velocity.ui.min.js"></script>
 	<script src="libs/js/popper.min.js"></script>
 	<script src="libs/js/bootstrap.min.js"></script>
 	<script src="libs/js/marked.min.js"></script>
 	<script src="libs/js/highlight.min.js"></script>
 	<script src="libs/js/core.js"></script>
+	<!-- MathJax -->
+	<script type="text/x-mathjax-config">
+		MathJax.Hub.Config({
+		    showProcessingMessages: false,
+		    messageStyle: "none"
+		});
+	</script>
 </body>
 </html>
