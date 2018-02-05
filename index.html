@@ -43,10 +43,17 @@
 							</div>
 						</li>
 					</ul>
-					<span id="user_login" class="mr-3">
+					<div id="user_login" class="mr-3">
 						<button type="button" id="loginbtn" class="btn btn-sm btn-outline-light" onclick="Login()">Login</button>
-						<span id="username"></span>
-					</span>
+						<ul>
+							<li class="nav-item dropdown">
+								<a class="nav-link dropdown-toggle" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"></a>
+								<div class="dropdown-menu" aria-labelledby="userDropdown">
+									<a class="dropdown-item" onclick="Logout()">Logout</a>
+								</div>
+							</li>
+						</ul>
+					</div>
 					<span class="navbar-text">
 						Ver 0.0.3
 					</span>
@@ -63,7 +70,7 @@
 			<div id="blog-main" class="col-md-8 blog-main">
 				<!-- Main content -->
 				<div id="backbtn" class="p-2">
-					<button type="button" class="btn btn-outline-dark" onclick="goback()">
+					<button type="button" class="btn btn-outline-dark" onclick="goHome()">
 						<i class="fa fa-arrow-left"></i>
 						<span>返回</span>
 					</button>

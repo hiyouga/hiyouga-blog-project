@@ -159,34 +159,36 @@ function PrettifyCode(){
 // Login
 
 function Logincheck(){
-	$.ajax({
-		url: "https://api.github.com/user?access_token="+$.cookie('actoken')+"&scope=&token_type=bearer",
-		success: function(data){
-			$("#loginbtn").hide();
-			$("#username").text(data.login);
-		},
-		error: function(xhr,textStatus,errorThrown){
-			if(xhr.status == 401){
-				console.log('401');
+	if($.cookie('actoken')){
+		$.ajax({
+			url: "https://api.github.com/user?access_token="+$.cookie('actoken')+"&scope=&token_type=bearer",
+			success: function(data){
+				$("#loginbtn").hide();
+				$("#userDropdown").text(data.login);
+			},
+			error: function(){
+				Logout();
 			}
-			//console.log(data);
-		}
-	});
+		});
+	}
 }
 
 function Login(str){
 	if(str){
+		$("#loginbtn").hide();
 		$.get("http://www.hiyouga.top/html/blog/libs/server/login.php?code="+str, function(data){
 			data = JSON.parse(data);
-			console.log(data.access_token);
-			if(data.access_token){
-				$.cookie('actoken', data.access_token, {expires: 30});
-				window.location.href = '?type=0';
-			}
+			$.cookie('actoken', data.access_token, {expires: 30});
+			goHome();
 		});
 	}else{
 		window.location.href = 'https://github.com/login/oauth/authorize?client_id='+CID+'&redirect_uri=&scope&allow_signup=true';
 	}
+}
+
+function Logout(){
+	$.cookie('actoken', null);
+	goHome();
 }
 
 // Functions
@@ -225,9 +227,12 @@ function ConvTime(str){
 	return nst.Format("yyyy-MM-dd HH:mm:ss");
 }
 
-function goback(){
-	//window.history.go(-1);
+function goHome(){
 	window.location.href = '?type=0';
+}
+
+function goBack(){
+	window.history.back();
 }
 
 function SubText(blogtext, num){
