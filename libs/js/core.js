@@ -1,8 +1,9 @@
 //Globalvariables
 
-var USERNAME = 'hiyouga'
-var REPONAME = 'hiyouga-blog-project'
-var REPOID = '91178023'
+var USERNAME = 'hiyouga';
+var REPONAME = 'hiyouga-blog-project';
+var REPOID = '91178023';
+var CID = '9a3a3b26984626c40168';
 
 // AJAX cache on
 
@@ -15,17 +16,19 @@ $(function(){
 /*
  * Main Methods
  * $param type
- * 0:HomePage; 1:BlogPage; 2:ArticlePage; 3:CodePage;
+ * 0:HomePage; 1:BlogPage; 2:TagPage;
  */
 
 $(document).ready(function(){
 	switch(GetUrlValue('type')){
-		case '1':
+		case '1': //Blog page
 			GetOneBlog(GetUrlValue('aid'));
 			break;
-		case '2':
+		case '2': //Tag page
+			GetTagBlogs(GetUrlValue('tag'));
 			break;
-		case '3':
+		case '3': //Login
+			login(GetUrlValue('code'));
 			break;
 		default: //Home page
 			$("#headcontainer").show();
@@ -52,16 +55,20 @@ function GetOneBlog(i){
 		if(data.labels){
 			html += "<p class=\"blog-post-lables\">";
 			$.each(data.labels, function(index, item){
-				html += "<button type=\"button\" class=\"btn btn-success btn-sm mr-1\">" + item.name + "</button>";
+				html += "<button type=\"button\" class=\"btn btn-success btn-sm mr-1\" onclick=\"window.location.href='?type=2&tag='+$(this).text()\">" + item.name + "</button>";
 			});
 			html += "</p>";
 		}
-		blogtext = data.body;
-		html += "<p>" + marked(blogtext) + "</p>";
+		$.getScript("libs/js/marked.min.js");
+		html += "<p>" + marked(data.body) + "</p>";
 		html += "</div><!-- /.blog-post -->";
 		$("#blog-main").append(html);
+		$.getScript("libs/js/highlight.min.js");
 		PrettifyCode(); //highlight.js
 		$.getScript("https://cdn.bootcss.com/mathjax/2.7.2/MathJax.js?config=TeX-AMS-MML_HTMLorMML"); //MathJax.js
+		if(data.comments){
+			GetBlogComments(i);
+		}
 	});
 }
 
@@ -72,15 +79,8 @@ function GetBlogs(){
 		$.each(data, function(index, item){
 			html = "<div class=\"p-2 blog-post\">";
 			html += "<h3 class=\"blog-post-title\"><a style=\"color:black;text-decoration:none;\" href=\"?type=1&aid=" + item.number + "\">" + item.title + "</a></h3>";
-			html += "<p class=\"blog-post-meta\">" + ConvTime(item.created_at) + " by <a href=\"" + item.user.html_url + "\">" + item.user.login + "</a></p>";
-			var Length = item.body.length;
-			var maxn = 200;
-			if(Length > maxn){
-				blogtext = item.body.substring(0, maxn) + "…… <a href=\"?type=1&aid="+ item.number + "\">阅读全文 »</a>";
-			}else{
-				blogtext = item.body;
-			}
-			html += "<p>" + blogtext + "</p>";
+			html += "<p class=\"blog-post-meta\">" + ConvTime(item.created_at) + " by <a target=\"_blank\" href=\"" + item.user.html_url + "\">" + item.user.login + "</a></p>";
+			html += "<p>" + SubText(item.body, item.number) + "</p>";
 			html += "</div><!-- /.blog-post -->";
 			$("#blog-main").append(html);
 		});
@@ -91,8 +91,48 @@ function GetBlogList(){
 	$("#sideloader").show();
 	$.get("https://api.github.com/repos/"+USERNAME+"/"+REPONAME+"/issues?state=open", function(data){
 		$("#sideloader").hide();
-		$.each(data,function(index,item){
+		$.each(data,function(index, item){
 			$("#side-list").append("<li><a href=\"?type=1&aid=" + item.number + "\">" + item.title + "</a></li>");
+		});
+	});
+}
+
+function GetTagBlogs(tag){
+	$("#mainloader").show();
+	$.get("https://api.github.com/repos/"+USERNAME+"/"+REPONAME+"/issues?state=open&labels="+tag, function(data){
+		$("#mainloader").hide();
+		$("#blog-main").append('<div class="p-2"><h2>#'+tag+'</h2><hr /></div>');
+		$.each(data, function(index, item){
+			html = "<div class=\"p-2 blog-post\">";
+			html += "<h3 class=\"blog-post-title\"><a style=\"color:black;text-decoration:none;\" href=\"?type=1&aid=" + item.number + "\">" + item.title + "</a></h3>";
+			html += "<p class=\"blog-post-meta\">" + ConvTime(item.created_at) + " by <a href=\"" + item.user.html_url + "\">" + item.user.login + "</a></p>";
+			html += "<p>" + SubText(item.body, item.number) + "</p>";
+			html += "</div><!-- /.blog-post -->";
+			$("#blog-main").append(html);
+		});
+	});
+}
+
+function GetBlogComments(i){
+	temp = '<div id="comloader" class="p-2"><div class="loader--audioWave"></div></div>';
+	temp += '<div id="comments" class="p-2"><h4 class="font-italic">Comments</h4><hr /></div>';
+	$("#blog-main").append(temp);
+	$.get("https://api.github.com/repos/"+USERNAME+"/"+REPONAME+"/issues/"+i+"/comments", function(data){
+		$("#comloader").hide();
+		$.each(data,function(index, item){
+			html = "<div class=\"p-2 blog-comment\">";
+			html += "<p class=\"blog-post-meta\"><a target=\"_blank\" href=\"" + item.user.html_url + "\">" + item.user.login + "</a> " + ConvTime(item.created_at) + "</p>";
+			html += "<p>" + item.body + "</p>";
+			html += "</div><!-- /.blog-comment -->";
+			$("#comments").append(html);
+		});
+	});
+}
+
+function SearchBlogs(qstr){
+	$.get("https://api.github.com/search/issues?q="+qstr+"+user:"+USERNAME+"+repo:"+REPONAME+"+state:open&sort=created&order=desc", function(data){
+		$.each(data.items, function(index, item){
+			//
 		});
 	});
 }
@@ -107,12 +147,22 @@ function GetArticles(){
 	});
 }
 
-//Highlight.js
+// Highlight.js
 
 function PrettifyCode(){
 	$('pre code').each(function(i, block) {
 		hljs.highlightBlock(block);
 	});
+}
+
+// Login
+
+function login(str){
+	if(str){
+		console.log(str);
+	}else{
+		window.location.href = 'https://github.com/login/oauth/authorize?client_id='+CID+'&redirect_uri=&scope&allow_signup=true';
+	}
 }
 
 // Functions
@@ -156,7 +206,17 @@ function goback(){
 	window.location.href = '?type=0';
 }
 
-//Backtop
+function SubText(blogtext, num){
+	var Length = blogtext.length;
+	var maxn = 200;
+	if(Length > maxn){
+		return blogtext.substring(0, maxn) + "…… <a href=\"?type=1&aid="+ num + "\">阅读全文 »</a>";
+	}else{
+		return blogtext;
+	}
+}
+
+// Backtop
 
 var THRESHOLD = 50;
 var $top = $('.back-to-top');
