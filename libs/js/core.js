@@ -160,16 +160,15 @@ function PrettifyCode(){
 
 function Logincheck(){
 	$.get("https://api.github.com/user?access_token="+$.cookie('actoken')+"&scope=&token_type=bearer", function(data){
-		if(data.id){
-			$("#loginbtn").hide();
-			$("#username").text(data.login);
-		}
+		$("#loginbtn").hide();
+		$("#username").text(data.login);
 	});
 }
 
 function Login(str){
 	if(str){
 		$.get("http://www.hiyouga.top/html/blog/libs/server/login.php?code="+str, function(data){
+			console.log(data.access_token);
 			if(data.access_token){
 				$.cookie('actoken', data.access_token, {expires: 30});
 				window.location.href = '?type=0';
