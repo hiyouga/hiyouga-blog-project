@@ -168,7 +168,7 @@ function Logincheck(){
 				$("#userDropdown").text(data.login);
 			},
 			error: function(){
-				
+				Logout();
 			}
 		});
 	}
