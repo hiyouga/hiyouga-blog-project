@@ -159,9 +159,16 @@ function PrettifyCode(){
 // Login
 
 function Logincheck(){
-	$.get("https://api.github.com/user?access_token="+$.cookie('actoken')+"&scope=&token_type=bearer", function(data){
-		$("#loginbtn").hide();
-		$("#username").text(data.login);
+	$.ajax({
+		url: "https://api.github.com/user?access_token="+$.cookie('actoken')+"&scope=&token_type=bearer",
+		type: "GET",
+		success: function(data){
+			$("#loginbtn").hide();
+			$("#username").text(data.login);
+		},
+		error: function(data){
+			console.log(data);
+		}
 	});
 }
 
