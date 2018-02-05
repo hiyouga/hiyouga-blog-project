@@ -8,9 +8,9 @@ var CID = '9a3a3b26984626c40168';
 // AJAX cache on
 
 $(function(){
-     $.ajaxSetup ({
-         cache: true
-     });
+	$.ajaxSetup ({
+		cache: true
+	});
 });
 
 /*
@@ -60,12 +60,12 @@ function GetOneBlog(i){
 			});
 			html += "</p>";
 		}
-		$.getScript("libs/js/marked.min.js");
 		html += "<p>" + marked(data.body) + "</p>";
 		html += "</div><!-- /.blog-post -->";
 		$("#blog-main").append(html);
-		$.getScript("libs/js/highlight.min.js");
-		PrettifyCode(); //highlight.js
+		$.getScript("libs/js/highlight.min.js", function(){
+			PrettifyCode(); //highlight.js
+		});
 		$.getScript("https://cdn.bootcss.com/mathjax/2.7.2/MathJax.js?config=TeX-AMS-MML_HTMLorMML"); //MathJax.js
 		if(data.comments){
 			GetBlogComments(i);
@@ -161,13 +161,15 @@ function PrettifyCode(){
 function Logincheck(){
 	$.ajax({
 		url: "https://api.github.com/user?access_token="+$.cookie('actoken')+"&scope=&token_type=bearer",
-		type: "GET",
 		success: function(data){
 			$("#loginbtn").hide();
 			$("#username").text(data.login);
 		},
-		error: function(data){
-			console.log(data);
+		error: function(xhr,textStatus,errorThrown){
+			if(xhr.status == 401){
+				console.log('401');
+			}
+			//console.log(data);
 		}
 	});
 }
@@ -175,6 +177,7 @@ function Logincheck(){
 function Login(str){
 	if(str){
 		$.get("http://www.hiyouga.top/html/blog/libs/server/login.php?code="+str, function(data){
+			data = JSON.parse(data);
 			console.log(data.access_token);
 			if(data.access_token){
 				$.cookie('actoken', data.access_token, {expires: 30});
