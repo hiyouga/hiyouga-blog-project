@@ -4,6 +4,7 @@ var USERNAME = 'hiyouga';
 var REPONAME = 'hiyouga-blog-project';
 var REPOID = '91178023';
 var CID = '9a3a3b26984626c40168';
+var is_login = false;
 
 // AJAX cache on
 
@@ -20,6 +21,7 @@ $(function(){
  */
 
 $(document).ready(function(){
+	Logincheck();
 	switch(GetUrlValue('type')){
 		case '1': //Blog page
 			GetOneBlog(GetUrlValue('aid'));
@@ -35,18 +37,17 @@ $(document).ready(function(){
 			GetBlogs();
 	}
 	GetBlogList();
-	Logincheck();
 });
 
 // Methods
 
 function GetNone(){
-	;
+	console.log('null');
 }
 
 function GetOneBlog(i){
 	$("#mainloader").show();
-	$.get("https://api.github.com/repos/"+USERNAME+"/"+REPONAME+"/issues/"+i, function(data){
+	$.get("https://api.github.com/repos/"+USERNAME+"/"+REPONAME+"/issues/"+i+AuthGet(), function(data){
 		$("#mainloader").hide();
 		$("#backbtn").show();
 		$("#blog-main").addClass("blog-main-after");
@@ -75,7 +76,7 @@ function GetOneBlog(i){
 
 function GetBlogs(){
 	$("#mainloader").show();
-	$.get("https://api.github.com/repos/"+USERNAME+"/"+REPONAME+"/issues?state=open", function(data){
+	$.get("https://api.github.com/repos/"+USERNAME+"/"+REPONAME+"/issues"+AuthGet()+"&state=open", function(data){
 		$("#mainloader").hide();
 		$.each(data, function(index, item){
 			html = "<div class=\"p-2 blog-post\">";
@@ -90,7 +91,7 @@ function GetBlogs(){
 
 function GetBlogList(){
 	$("#sideloader").show();
-	$.get("https://api.github.com/repos/"+USERNAME+"/"+REPONAME+"/issues?state=open", function(data){
+	$.get("https://api.github.com/repos/"+USERNAME+"/"+REPONAME+"/issues"+AuthGet()+"&state=open", function(data){
 		$("#sideloader").hide();
 		$.each(data,function(index, item){
 			$("#side-list").append("<li><a href=\"?type=1&aid=" + item.number + "\">" + item.title + "</a></li>");
@@ -100,7 +101,7 @@ function GetBlogList(){
 
 function GetTagBlogs(tag){
 	$("#mainloader").show();
-	$.get("https://api.github.com/repos/"+USERNAME+"/"+REPONAME+"/issues?state=open&labels="+tag, function(data){
+	$.get("https://api.github.com/repos/"+USERNAME+"/"+REPONAME+"/issues"+AuthGet()+"&state=open&labels="+tag, function(data){
 		$("#mainloader").hide();
 		$("#blog-main").append('<div class="p-2"><h2>#'+tag+'</h2><hr /></div>');
 		$.each(data, function(index, item){
@@ -118,7 +119,8 @@ function GetBlogComments(i){
 	temp = '<div id="comloader" class="p-2"><div class="loader--audioWave"></div></div>';
 	temp += '<div id="comments" class="p-2"><h4 class="font-italic">Comments</h4><hr /></div>';
 	$("#blog-main").append(temp);
-	$.get("https://api.github.com/repos/"+USERNAME+"/"+REPONAME+"/issues/"+i+"/comments", function(data){
+
+	$.get("https://api.github.com/repos/"+USERNAME+"/"+REPONAME+"/issues/"+i+"/comments"+AuthGet(), function(data){
 		$("#comloader").hide();
 		$.each(data,function(index, item){
 			html = "<div class=\"p-2 blog-comment\">";
@@ -158,17 +160,26 @@ function PrettifyCode(){
 
 // Login
 
+function AuthGet(){
+	if(is_login){
+		return '?access_token='+$.cookie('actoken');
+	}else{
+		return '?';
+	}
+}
+
 function Logincheck(){
 	if($.cookie('actoken') != "null"){
 		$.ajax({
-			url: "https://api.github.com/user?access_token="+$.cookie('actoken')+"&scope=&token_type=bearer",
+			url: "https://api.github.com/user?access_token="+$.cookie('actoken'),
 			success: function(data){
+				is_login = true;
 				$("#loginbtn").hide();
 				$("#loginafter").show();
 				$("#userDropdown").text(data.login);
 			},
 			error: function(){
-				//Logout();
+				Logout();
 			}
 		});
 	}
@@ -180,7 +191,7 @@ function Login(str){
 		$.get("http://www.hiyouga.top/html/blog/libs/server/login.php?code="+str, function(data){
 			data = JSON.parse(data);
 			$.cookie('actoken', data.access_token, {expires: 30});
-			//goHome();
+			goHome();
 		});
 	}else{
 		window.location.href = 'https://github.com/login/oauth/authorize?client_id='+CID+'&redirect_uri=&scope&allow_signup=true';
