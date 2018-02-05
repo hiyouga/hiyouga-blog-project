@@ -28,13 +28,14 @@ $(document).ready(function(){
 			GetTagBlogs(GetUrlValue('tag'));
 			break;
 		case '3': //Login
-			login(GetUrlValue('code'));
+			Login(GetUrlValue('code'));
 			break;
 		default: //Home page
 			$("#headcontainer").show();
 			GetBlogs();
 	}
 	GetBlogList();
+	Logincheck();
 });
 
 // Methods
@@ -157,9 +158,23 @@ function PrettifyCode(){
 
 // Login
 
-function login(str){
+function Logincheck(){
+	$.get("https://api.github.com/user?access_token="+$.cookie('actoken')+"&scope=&token_type=bearer", function(data){
+		if(data.id){
+			$("#loginbtn").hide();
+			$("#username").text(data.login);
+		}
+	});
+}
+
+function Login(str){
 	if(str){
-		console.log(str);
+		$.get("http://www.hiyouga.top/html/blog/libs/server/login.php?code="+str, function(data){
+			if(data.access_token){
+				$.cookie('actoken', data.access_token, {expires: 30});
+				window.location.href = '?type=0';
+			}
+		});
 	}else{
 		window.location.href = 'https://github.com/login/oauth/authorize?client_id='+CID+'&redirect_uri=&scope&allow_signup=true';
 	}
