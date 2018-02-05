@@ -168,7 +168,7 @@ function Logincheck(){
 				$("#userDropdown").text(data.login);
 			},
 			error: function(){
-				Logout();
+				//Logout();
 			}
 		});
 	}
@@ -180,7 +180,7 @@ function Login(str){
 		$.get("http://www.hiyouga.top/html/blog/libs/server/login.php?code="+str, function(data){
 			data = JSON.parse(data);
 			$.cookie('actoken', data.access_token, {expires: 30});
-			goHome();
+			//goHome();
 		});
 	}else{
 		window.location.href = 'https://github.com/login/oauth/authorize?client_id='+CID+'&redirect_uri=&scope&allow_signup=true';
