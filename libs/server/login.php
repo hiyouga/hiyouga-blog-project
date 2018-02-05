@@ -1,5 +1,6 @@
 <?php
 error_reporting(0);
+header("Access-Control-Allow-Origin: *");
 define('CLIENTID', '');
 define('CLIENTSECRET', '');
 $ch = curl_init();
