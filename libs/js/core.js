@@ -170,10 +170,10 @@ function AuthGet(){
 
 function Logincheck(){
 	if($.cookie('actoken') != "null"){
+		is_login = true;
 		$.ajax({
 			url: "https://api.github.com/user?access_token="+$.cookie('actoken'),
 			success: function(data){
-				is_login = true;
 				$("#loginbtn").hide();
 				$("#loginafter").show();
 				$("#userDropdown").text(data.login);
