@@ -159,7 +159,7 @@ function PrettifyCode(){
 // Login
 
 function Logincheck(){
-	if($.cookie('actoken') != null){
+	if($.cookie('actoken') != "null"){
 		$.ajax({
 			url: "https://api.github.com/user?access_token="+$.cookie('actoken')+"&scope=&token_type=bearer",
 			success: function(data){
