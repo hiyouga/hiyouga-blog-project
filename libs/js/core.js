@@ -169,7 +169,7 @@ function AuthGet(){
 }
 
 function Logincheck(){
-	if($.cookie('actoken') != "null"){
+	if($.cookie('actoken') != "null" && $.cookie('actoken')){
 		is_login = true;
 		$.ajax({
 			url: "https://api.github.com/user?access_token="+$.cookie('actoken'),
