@@ -57,7 +57,7 @@ function GetOneBlog(i){
 		if(data.labels){
 			html += "<p class=\"blog-post-lables\">";
 			$.each(data.labels, function(index, item){
-				html += "<button type=\"button\" class=\"btn btn-success btn-sm mr-1\" onclick=\"window.location.href='?type=2&tag='+$(this).text()\">" + item.name + "</button>";
+				html += "<a class=\"badge badge-success mr-1\" href=\"?type=2&tag=" + item.name + "\">" + item.name + "</a>";
 			});
 			html += "</p>";
 		}

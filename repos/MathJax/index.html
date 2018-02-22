@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Dynamic Preview of Textarea with MathJax Content</title>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://cdn.bootcss.com/bootstrap/4.0.0/css/bootstrap.min.css" />
+<script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.min.js"></script>
+<script src="https://cdn.bootcss.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    showProcessingMessages: false,
+    tex2jax: { inlineMath: [['$','$'],['\\(','\\)']] }
+  });
+</script>
+<script src="https://cdn.bootcss.com/mathjax/2.7.2/MathJax.js?config=TeX-MML-AM_HTMLorMML"></script>
+
+<script>
+var Preview = {
+  delay: 150,
+  preview: null,
+  buffer: null,
+  timeout: null,
+  mjRunning: false,
+  mjPending: false,
+  oldText: null,
+
+  Init: function () {
+    this.preview = document.getElementById("MathPreview");
+    this.buffer = document.getElementById("MathBuffer");
+  },
+
+  SwapBuffers: function () {
+    var buffer = this.preview, preview = this.buffer;
+    this.buffer = buffer; this.preview = preview;
+    buffer.style.visibility = "hidden"; buffer.style.position = "absolute";
+    preview.style.position = ""; preview.style.visibility = "";
+  },
+
+  Update: function () {
+    if (this.timeout) {clearTimeout(this.timeout)}
+    this.timeout = setTimeout(this.callback,this.delay);
+  },
+
+  CreatePreview: function () {
+    Preview.timeout = null;
+    if (this.mjPending) return;
+    var text = document.getElementById("MathInput").value;
+    if (text === this.oldtext) return;
+    if (this.mjRunning) {
+      this.mjPending = true;
+      MathJax.Hub.Queue(["CreatePreview",this]);
+    } else {
+      this.buffer.innerHTML = this.oldtext = text;
+      this.mjRunning = true;
+      MathJax.Hub.Queue(
+	["Typeset",MathJax.Hub,this.buffer],
+	["PreviewDone",this]
+      );
+    }
+  },
+
+  PreviewDone: function () {
+    this.mjRunning = this.mjPending = false;
+    this.SwapBuffers();
+  }
+
+};
+
+Preview.callback = MathJax.Callback(["CreatePreview",Preview]);
+Preview.callback.autoReset = true;  // make sure it can run more than once
+</script>
+<style>
+#MathInput {
+  width: 100%;
+  height: 500px;
+}
+#MathPreview, #MathBuffer{
+  padding: 3px;
+
+}
+</style>
+</head>
+<body>
+<div class="container">
+  <div class="row text-center m-3">
+    <div class="card text-left" style="margin: 0 auto;">
+      <div class="card-header">
+        Dynamic Preview of Textarea with MathJax Content
+      </div>
+      <div class="card-body">
+        <h5 class="card-title">Type text (mixed with MathML, TeX or asciimath) in the box below for a live preview.</h5>
+        <p class="card-text">
+          Configured delimiters: 
+          <ul>
+          <li>TeX, inline mode: <code>\(...\)</code> or <code>$...$</code></li>
+          <li>TeX, display mode: <code>\[...\]</code> or <code> $$...$$</code></li>
+          <li>Asciimath: <code>`...`</code>.</li>
+          </ul>
+        </p>
+      </div>
+    </div>
+  </div>
+  
+  <div class="row">
+    <div class="col">
+      <textarea class="form-control" id="MathInput" onkeyup="Preview.Update()" style="margin-top:5px">$$S=\sum^{100}_{i=1}i^2$$</textarea>
+    </div>
+    <div class="col">
+      <p>Preview is shown here:</p>
+      <div id="MathPreview" class="p-3 mb-3 bg-light rounded"></div>
+      <div id="MathBuffer" class="p-3 mb-3 bg-light rounded" style="visibility:hidden;"></div>
+    </div>
+  </div>
+</div>
+<script>
+Preview.Init();
+Preview.Update()
+</script>
+</body>
+</html>
