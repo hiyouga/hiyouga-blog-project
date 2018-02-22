@@ -93,7 +93,7 @@ function GetBlogList(){
 	$("#sideloader").show();
 	$.get("https://api.github.com/repos/"+USERNAME+"/"+REPONAME+"/issues"+AuthGet()+"&state=open", function(data){
 		$("#sideloader").hide();
-		$.each(data,function(index, item){
+		$.each(data, function(index, item){
 			$("#side-list").append("<li><a href=\"?type=1&aid=" + item.number + "\">" + item.title + "</a></li>");
 		});
 	});
@@ -122,10 +122,10 @@ function GetBlogComments(i){
 
 	$.get("https://api.github.com/repos/"+USERNAME+"/"+REPONAME+"/issues/"+i+"/comments"+AuthGet(), function(data){
 		$("#comloader").hide();
-		$.each(data,function(index, item){
+		$.each(data, function(index, item){
 			html = "<div class=\"p-2 blog-comment\">";
 			html += "<p class=\"blog-post-meta\"><a target=\"_blank\" href=\"" + item.user.html_url + "\">" + item.user.login + "</a> " + ConvTime(item.created_at) + "</p>";
-			html += "<p>" + item.body + "</p>";
+			html += "<p>" + marked(item.body) + "</p>";
 			html += "</div><!-- /.blog-comment -->";
 			$("#comments").append(html);
 		});
