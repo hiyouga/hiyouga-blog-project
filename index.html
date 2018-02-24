@@ -9,10 +9,11 @@
 	<title>Hiyouga Blog</title>
 
 	<link rel="icon" type="image/ico" href="imgs/favicon.ico" />
-	<link rel="stylesheet" href="libs/css/bootstrap.min.css" />
+	<link rel="stylesheet" href="src/css/lib/bootstrap.min.css" />
+	<link rel="stylesheet" href="src/css/lib/jquery.fancybox.min.css" />
 	<link rel="stylesheet" href="https://cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css" />
-	<link rel="stylesheet" href="libs/css/highlight-github.min.css" />
-	<link rel="stylesheet" href="libs/css/core.css" />
+	<link rel="stylesheet" href="src/css/lib/highlight-github.min.css" />
+	<link rel="stylesheet" href="src/css/core.css" />
 </head>
 <body>
 	<header>
@@ -55,7 +56,7 @@
 						</ul>
 					</div>
 					<span class="navbar-text">
-						Ver 0.1.0
+						Ver 0.1.1
 					</span>
 				</div>
 			</div>
@@ -116,14 +117,7 @@
 		<span id="scrollpercent"><span>0</span>%</span>
 	</div>
 	<!-- JavaScript -->
-	<script src="libs/js/jquery-3.3.1.min.js"></script>
-	<script src="libs/js/jquery.cookie.min.js"></script>
-	<script src="libs/js/velocity.min.js"></script>
-	<script src="libs/js/velocity.ui.min.js"></script>
-	<script src="libs/js/popper.min.js"></script>
-	<script src="libs/js/bootstrap.min.js"></script>
-	<script src="libs/js/marked.min.js"></script>
-	<script src="libs/js/core.js"></script>
+	<script data-main="src/js/main" src="src/js/lib/require.js"></script>
 	<!-- MathJax -->
 	<script type="text/x-mathjax-config">
 		MathJax.Hub.Config({

@@ -14,6 +14,10 @@ $(function(){
 	});
 });
 
+// Markdown
+
+var marked = require('marked');
+
 /*
  * Main Methods
  * $param type
@@ -64,7 +68,7 @@ function GetOneBlog(i){
 		html += "<p>" + marked(data.body) + "</p>";
 		html += "</div><!-- /.blog-post -->";
 		$("#blog-main").append(html);
-		$.getScript("libs/js/highlight.min.js", function(){
+		$.getScript("src/js/lib/highlight.min.js", function(){
 			PrettifyCode(); //highlight.js
 		});
 		$.getScript("https://cdn.bootcss.com/mathjax/2.7.2/MathJax.js?config=TeX-AMS-MML_HTMLorMML"); //MathJax.js
