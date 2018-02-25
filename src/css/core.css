@@ -23,6 +23,11 @@ blockquote{
 	height: auto;
 }
 
+header{
+	position: relative;
+	z-index: 9999;
+}
+
 #userDropdown{
 	color: #fff;
 }
@@ -33,7 +38,6 @@ blockquote{
 	width: 100%;
 	margin: 0 auto;
 	position: relative;
-	z-index: -1;
 }
 
 #headimg{
