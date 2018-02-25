@@ -6,7 +6,7 @@
 	<meta name="author" content="hoshi_hiyouga, hiyouga#buaa.edu.cn" />
 	<meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no" />
 
-	<title>Hiyouga Blog</title>
+	<title>-</title>
 
 	<link rel="icon" type="image/ico" href="imgs/favicon.ico" />
 	<link rel="stylesheet" href="src/css/lib/bootstrap.min.css" />
@@ -19,7 +19,7 @@
 	<header>
 		<nav class="navbar navbar-expand-md navbar-dark bg-dark">
 			<div class="container">
-				<a class="navbar-brand mb-0 h1" href="?">Hiyouga Blog</a>
+				<a id="blogtitle" class="navbar-brand mb-0 h1" href="?"></a>
 				<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
 					<span class="navbar-toggler-icon"></span>
 				</button>
@@ -55,9 +55,7 @@
 							</li>
 						</ul>
 					</div>
-					<span class="navbar-text">
-						Ver 0.1.1
-					</span>
+					<span id="version" class="navbar-text"></span>
 				</div>
 			</div>
 		</nav>
@@ -67,7 +65,7 @@
 			<div id="hshade"></div>
 			<img id="headimg" src="imgs/header.jpg" />
 		</div>
-		<div class="row mt-3 mb-2">
+		<div id="blogcontainer" class="row mt-3 mb-2">
 			<div id="blog-main" class="col-md-8 blog-main">
 				<!-- Main content -->
 				<div id="backbtn" class="p-2">
@@ -84,7 +82,7 @@
 				<div class="p-3 mb-3 bg-light rounded">
 					<h4 class="font-italic">About</h4>
 					<img class="p-3" id="avatar" src="imgs/avatar.jpg" />
-					<p class="mb-0">Hoshi hiyouga, living in Beijing, China, studying at Beihang University as an undergraduate, majoring Computer Science and Technology, is learning Aritificial Intelligence now, also likes Web-design.</p>
+					<p id="abouttext" class="mb-0"></p>
 				</div>
 				<div class="p-3">
 					<h4 class="font-italic">Archives</h4>
@@ -95,18 +93,12 @@
 				</div>
 				<div class="p-3">
 					<h4 class="font-italic">Elsewhere</h4>
-					<ol class="list-unstyled">
-						<li><a rel="nofollow" target="_blank" href="https://github.com/hiyouga">GitHub</a></li>
-						<li><a rel="nofollow" target="_blank" href="https://twitter.com/hoshi_hiyouga">Twitter</a></li>
-						<li><a rel="nofollow" target="_blank" href="https://www.youtube.com/channel/UCuZikb54QyqWpXMaSVVjnPg">YouTube</a></li>
-						<li><a rel="nofollow" target="_blank" href="https://space.bilibili.com/39660085/">哔哩哔哩</a></li>
-						<li><a rel="nofollow" target="_blank" href="http://music.163.com/user/home?id=130573753">网易云音乐</a></li>
-					</ol>
+					<ol id="links" class="list-unstyled"></ol>
 				</div>
 		    </aside><!-- /.blog-sidebar -->
 		</div><!-- /.row -->
 	</main><!-- /.container -->
-	<footer class="blog-footer">
+	<footer id="blogfooter" class="blog-footer">
 		<p>&copy;2014-2018 Hiyouga Project. Powered by GitHub Pages.</p>
 		<p>
 			<a href="#">Back to top</a>
