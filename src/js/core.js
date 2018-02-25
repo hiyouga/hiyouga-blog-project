@@ -205,7 +205,7 @@ function Login(str){
 	if(str){
 		$("#mainloader").show();
 		$("#loginbtn").hide();
-		$.get("http://www.hiyouga.top/html/blog/libs/server/login.php?code="+str, function(data){
+		$.get("http://www.hiyouga.top/html/blog/src/server/login.php?code="+str, function(data){
 			data = JSON.parse(data);
 			$.cookie('actoken', data.access_token, {expires: 30});
 			goHome();
