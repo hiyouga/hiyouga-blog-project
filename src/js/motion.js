@@ -19,6 +19,7 @@ $(document).ready(function(){
 		title: function (integrator) {
 			$("#blogtitle").velocity('transition.slideDownIn', {
 				display: null,
+				duration: 800,
 				complete: function () {
 					integrator.next();
 				}
@@ -27,6 +28,7 @@ $(document).ready(function(){
 		nav: function (integrator) {
 			$("#navbarSupportedContent").velocity('transition.slideDownIn', {
 				display: null,
+				duration: 600,
 				complete: function () {
 					integrator.next();
 				}
@@ -43,6 +45,7 @@ $(document).ready(function(){
 		footer: function (integrator) {
 			$("#blogfooter").velocity('transition.slideDownIn', {
 				display: null,
+				duration: 800,
 				complete: function () {
 					integrator.next();
 				}
@@ -56,5 +59,4 @@ $(document).ready(function(){
 		.add(motionMiddleWares.footer)
 
 	window.motionIntegrator = motionIntegrator;
-	motionIntegrator.bootstrap();
 });

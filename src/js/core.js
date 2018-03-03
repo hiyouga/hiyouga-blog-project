@@ -6,6 +6,7 @@ var REPONAME;
 var REPOID;
 var CID;
 var is_login = false;
+var per_page = 10;
 
 // AJAX cache on
 
@@ -19,11 +20,7 @@ $(function(){
 
 var marked = require('marked');
 
-/*
- * Main Methods
- * $param type
- * 0:HomePage; 1:BlogPage; 2:TagPage;
- */
+// Main
 
 $(document).ready(function(){
 	$.ajax({url:"src/config.json", async:true, success: function(config){
@@ -32,18 +29,26 @@ $(document).ready(function(){
 		REPOID = config.repoid;
 		CID = config.cid;
 		document.title = config.title;
+		per_page = config.per_page;
 		$("#blogtitle").text(config.title);
 		$("#version").text('Ver ' + config.version);
 		$("#abouttext").text(config.about);
 		$.each(config.links, function(index, item){
 			$("#links").append('<li><a rel="nofollow" target="_blank" href="'+item.src+'">'+item.name+'</a></li>');
 		});
+		motionIntegrator.bootstrap();
+		is_login = Logincheck();
 		GetContent();
-		Logincheck();
 	}});
 });
 
 // Methods
+
+/*
+ * Main Methods
+ * $param type
+ * 0:HomePage; 1:BlogPage; 2:TagPage;
+ */
 
 function GetContent(){
 	switch(GetUrlValue('type')){
@@ -58,7 +63,8 @@ function GetContent(){
 			break;
 		default: //Home page
 			$("#headcontainer").velocity('transition.expandIn');
-			Loader.getBlogs();
+			Loader.getMetadata(GetUrlValue('page')||1);
+			Loader.getBlogs(GetUrlValue('page')||1);
 	}
 	Loader.getBlogList();
 }
@@ -69,13 +75,21 @@ var Loader = {
 	getNone: function(){
 		console.log('null');
 	},
+	getMetadata: function(page){
+		$.get("https://api.github.com/repos/"+USERNAME+"/"+REPONAME+AuthGet(), function(data){
+			var max_pn = Math.ceil(data.open_issues / per_page);
+			var cur_pn = page;
+			
+			$("#pagination").show();
+		});
+	},
 	getOneBlog: function(id){
 		$("#mainloader").show();
 		$.get("https://api.github.com/repos/"+USERNAME+"/"+REPONAME+"/issues/"+id+AuthGet(), function(data){
 			$("#mainloader").hide();
 			$("#backbtn").show();
 			$("#blog-main").addClass("blog-main-after");
-			var html = "<div class=\"p-2 blog-content\">";
+			var html = "<div id=\"blog-content\" class=\"p-2 blog-content\">";
 			html += "<h3 class=\"blog-post-title\">" + data.title + "</h3>";
 			html += "<p class=\"blog-post-meta\">" + ConvTime(data.created_at) + " by <a href=\"" + data.user.html_url + "\">" + data.user.login + "</a></p>";
 			if(data.labels){
@@ -88,6 +102,7 @@ var Loader = {
 			html += "<p>" + marked(data.body) + "</p>";
 			html += "</div><!-- /.blog-post -->";
 			$("#blog-main").append(html);
+			$("#blog-content").velocity('transition.fadeIn');
 			$.getScript("src/js/lib/highlight.min.js", PrettifyCode);
 			if(data.comments){
 				Loader.getComments(id);
@@ -110,9 +125,9 @@ var Loader = {
 			});
 		});
 	},
-	getBlogs: function(){
+	getBlogs: function(page){
 		$("#mainloader").show();
-		$.get("https://api.github.com/repos/"+USERNAME+"/"+REPONAME+"/issues"+AuthGet()+"&state=open", function(data){
+		$.get("https://api.github.com/repos/"+USERNAME+"/"+REPONAME+"/issues"+AuthGet()+"&state=open&page="+page+"&per_page="+per_page, function(data){
 			$("#mainloader").hide();
 			$.each(data, function(index, item){
 				var html = "<div class=\"p-2 blog-post\">";
@@ -120,17 +135,19 @@ var Loader = {
 				html += "<p class=\"blog-post-meta\">" + ConvTime(item.created_at) + " by <a target=\"_blank\" href=\"" + item.user.html_url + "\">" + item.user.login + "</a></p>";
 				html += "<p>" + SubText(item.body, item.number) + "</p>";
 				html += "</div><!-- /.blog-post -->";
-				$("#blog-main").append(html);
+				$("#blog-post").append(html);
 			});
+			$("#blog-post").velocity('transition.fadeIn');
 		});
 	},
 	getBlogList: function(){
 		$("#sideloader").show();
-		$.get("https://api.github.com/repos/"+USERNAME+"/"+REPONAME+"/issues"+AuthGet()+"&state=open", function(data){
+		$.get("https://api.github.com/repos/"+USERNAME+"/"+REPONAME+"/issues"+AuthGet()+"&state=open&per_page="+per_page, function(data){
 			$("#sideloader").hide();
 			$.each(data, function(index, item){
 				$("#side-list").append("<li><a href=\"?type=1&aid=" + item.number + "\">" + item.title + "</a></li>");
 			});
+			$("#side-list").velocity('transition.fadeIn');
 		});
 	},
 	getTagBlogs: function(tag){
@@ -186,7 +203,6 @@ function AuthGet(){
 
 function Logincheck(){
 	if($.cookie('actoken') != "null" && $.cookie('actoken')){
-		is_login = true;
 		$.ajax({
 			url: "https://api.github.com/user?access_token="+$.cookie('actoken'),
 			success: function(data){
@@ -198,6 +214,9 @@ function Logincheck(){
 				Logout();
 			}
 		});
+		return true;
+	}else{
+		return false;
 	}
 }
 
@@ -268,7 +287,7 @@ function SubText(blogtext, num){
 	var Length = blogtext.length;
 	var maxn = 200;
 	if(Length > maxn){
-		return blogtext.substring(0, maxn) + "…… <a href=\"?type=1&aid="+ num + "\">阅读全文 »</a>";
+		return blogtext.substring(0, maxn) + "…… <a href=\"?type=1&aid="+ num + "\">阅读全文 &raquo;</a>";
 	}else{
 		return blogtext;
 	}
