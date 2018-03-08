@@ -86,6 +86,10 @@ header{
 	color: #999;
 }
 
+.blog-content {
+	line-height: 180%;
+}
+
 .blog-comment {
 	margin-bottom: 1rem;
 }
