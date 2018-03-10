@@ -7,6 +7,8 @@ require.config({
 		"bootstrap" : "lib/bootstrap.bundle.min",
 		"marked" : "lib/marked.min",
 		"fancybox" : "lib/jquery.fancybox.min",
+		"lazyload" : "lib/jquery.lazyload.min",
+		"fastclick" : "lib/fastclick"
 	},
 	shim: {
 		"jquery-cookie" : {deps:["jquery"]},
@@ -15,10 +17,15 @@ require.config({
 		"velocity" : {deps:["jquery"]},
 		"velocity-ui" : {deps:["velocity"]},
 		"motion" : {deps:["velocity-ui"]},
-		"core" : {deps:["jquery", "jquery-cookie", "marked", "fancybox", "velocity", "velocity-ui", "motion"]}
+		"lazyload" : {deps:["jquery"]},
+		"core" : {deps:["jquery", "jquery-cookie", "marked", "fancybox", "velocity", "velocity-ui", "motion", "lazyload", "fastclick"]}
 	}
 })
 
-require(['jquery', 'jquery-cookie', 'velocity', 'velocity-ui', 'bootstrap', 'marked', 'fancybox', 'motion', 'core'], function() {
+require(['jquery', 'jquery-cookie', 'velocity', 'velocity-ui', 'bootstrap', 'marked', 'fancybox', 'motion', 'lazyload', 'core'], function() {
 	console.log("Load completed!")
+});
+
+require(['fastclick'], function(FastClick){
+	FastClick.attach(document.body);
 });

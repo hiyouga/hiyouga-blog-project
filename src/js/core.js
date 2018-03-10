@@ -63,8 +63,8 @@ function GetContent(){
 			break;
 		default: //Home page
 			$("#headcontainer").velocity('transition.expandIn');
-			Loader.getMetadata(GetUrlValue('page')||1);
-			Loader.getBlogs(GetUrlValue('page')||1);
+			Loader.getMetadata();
+			Loader.getMoreBlogs();
 	}
 	Loader.getBlogList();
 }
@@ -72,15 +72,14 @@ function GetContent(){
 
 var Loader = {
 	num: 0,
+	my_pn: 1,
+	max_pn: 99999,
 	getNone: function(){
 		console.log('null');
 	},
-	getMetadata: function(page){
+	getMetadata: function(){
 		$.get("https://api.github.com/repos/"+USERNAME+"/"+REPONAME+AuthGet(), function(data){
-			var max_pn = Math.ceil(data.open_issues / per_page);
-			var cur_pn = page;
-			
-			$("#pagination").show();
+			Loader.max_pn = Math.ceil(data.open_issues / per_page);
 		});
 	},
 	getOneBlog: function(id){
@@ -107,6 +106,7 @@ var Loader = {
 			if(data.comments){
 				Loader.getComments(id);
 			}
+			$("img.lazyload").lazyload({placeholder:"imgs/blank.gif",effect:"fadeIn",threshold:180});
 			$.getScript("https://cdn.bootcss.com/mathjax/2.7.2/MathJax.js?config=TeX-AMS-MML_HTMLorMML"); //MathJax.js
 		});
 	},
@@ -125,9 +125,10 @@ var Loader = {
 			});
 		});
 	},
-	getBlogs: function(page){
+	getMoreBlogs: function(){
+		$("#pagination").hide();
 		$("#mainloader").show();
-		$.get("https://api.github.com/repos/"+USERNAME+"/"+REPONAME+"/issues"+AuthGet()+"&state=open&page="+page+"&per_page="+per_page, function(data){
+		$.get("https://api.github.com/repos/"+USERNAME+"/"+REPONAME+"/issues"+AuthGet()+"&state=open&page="+Loader.my_pn+"&per_page="+per_page, function(data){
 			$("#mainloader").hide();
 			$.each(data, function(index, item){
 				var html = "<div class=\"p-2 blog-post\">";
@@ -137,7 +138,13 @@ var Loader = {
 				html += "</div><!-- /.blog-post -->";
 				$("#blog-post").append(html);
 			});
-			$("#blog-post").velocity('transition.fadeIn');
+			//$("#blog-post").velocity('transition.fadeIn');
+			if(Loader.my_pn < Loader.max_pn){
+				$("#pagination").show();
+			}else{
+				$("#pagination").hide();
+			}
+			Loader.my_pn++;
 		});
 	},
 	getBlogList: function(){
@@ -273,6 +280,10 @@ Date.prototype.Format = function (fmt) {
 function ConvTime(str){
 	var nst = new Date(str);
 	return nst.Format("yyyy-MM-dd HH:mm:ss");
+}
+
+function loadmore(){
+	Loader.getMoreBlogs();
 }
 
 function goHome(){
