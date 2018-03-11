@@ -129,9 +129,16 @@ var Loader = {
 				//temp = '<div id="comloader" class="p-2"><div class="loader--audioWave"></div></div>';
 				var temp = '<div id="comments" class="p-2"><h4 class="font-italic">Comments</h4><hr /></div>';
 				$("#blog-main").append(temp);
+				var count1 = [], count2 = [];
 				$.each(data, function(index, item){
+					count1[item.user.login] = count1[item.user.login]+1 || 1;
+					var pat = new RegExp("@.*");
+					var patxt = String(pat.exec(item.body));
+					var atuser = patxt.replace("@","").replace(/\s/, "");
+					count2[atuser] = count2[atuser]+1 || 1;
+					item.body = item.body.replace(patxt, "<a href=\"#"+atuser+count2[atuser]+"\">"+patxt.replace(/\s/, "")+"</a>");
 					var html = "<div class=\"p-2 blog-comment\">";
-					html += "<p class=\"blog-post-meta\"><a target=\"_blank\" href=\"" + item.user.html_url + "\">" + item.user.login + "</a> " + ConvTime(item.created_at) + "</p>";
+					html += "<p class=\"blog-post-meta\"><a target=\"_blank\" href=\"" + item.user.html_url + "\">" + item.user.login + "</a><a name=\""+item.user.login+count1[item.user.login]+"\"></a> " + ConvTime(item.created_at) + "</p>";
 					html += "<p>" + marked(item.body) + "</p>";
 					html += "</div><!-- /.blog-comment -->";
 					$("#comments").append(html);

@@ -36,6 +36,10 @@ table tr:nth-child(2n) {
 	background-color: #f8f8f8;
 }
 
+audio {
+	width: 100%;
+}
+
 #headcontainer, #mainloader, #sideloader, #backbtn, #loginafter, #pagination{
 	display: none;
 }

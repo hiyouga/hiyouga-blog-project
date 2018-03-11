@@ -28,6 +28,6 @@ require(['jquery', 'jquery-cookie', 'velocity', 'velocity-ui', 'bootstrap', 'mar
 	console.log("Load completed!")
 });
 
-require(['fastclick'], function(FastClick){
+require('fastclick', function(FastClick){
 	FastClick.attach(document.body);
 });
