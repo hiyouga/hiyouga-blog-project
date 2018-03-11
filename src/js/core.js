@@ -71,105 +71,140 @@ function GetContent(){
 
 
 var Loader = {
-	num: 0,
 	my_pn: 1,
 	max_pn: 99999,
 	getNone: function(){
 		console.log('null');
 	},
 	getMetadata: function(){
-		$.get("https://api.github.com/repos/"+USERNAME+"/"+REPONAME+AuthGet(), function(data){
-			Loader.max_pn = Math.ceil(data.open_issues / per_page);
+		$.ajax({
+			url: "https://api.github.com/repos/"+USERNAME+"/"+REPONAME+AuthGet(),
+			success: function(data){
+				Loader.max_pn = Math.ceil(data.open_issues / per_page);
+			},
+			error: function(){
+				Loader.getMetadata();
+			}
 		});
 	},
 	getOneBlog: function(id){
 		$("#mainloader").show();
-		$.get("https://api.github.com/repos/"+USERNAME+"/"+REPONAME+"/issues/"+id+AuthGet(), function(data){
-			$("#mainloader").hide();
-			$("#backbtn").show();
-			$("#blog-main").addClass("blog-main-after");
-			var html = "<div id=\"blog-content\" class=\"p-2 blog-content\">";
-			html += "<h3 class=\"blog-post-title\">" + data.title + "</h3>";
-			html += "<p class=\"blog-post-meta\">" + ConvTime(data.created_at) + " by <a href=\"" + data.user.html_url + "\">" + data.user.login + "</a></p>";
-			if(data.labels){
-				html += "<p class=\"blog-post-lables\">";
-				$.each(data.labels, function(index, item){
-					html += "<a class=\"badge badge-success mr-1\" href=\"?type=2&tag=" + item.name + "\">" + item.name + "</a>";
-				});
-				html += "</p>";
+		$.ajax({
+			url: "https://api.github.com/repos/"+USERNAME+"/"+REPONAME+"/issues/"+id+AuthGet(),
+			success: function(data){
+				$("#mainloader").hide();
+				$("#backbtn").show();
+				$("#blog-main").addClass("blog-main-after");
+				var html = "<div id=\"blog-content\" class=\"p-2 blog-content\">";
+				html += "<h3 class=\"blog-post-title\">" + data.title + "</h3>";
+				html += "<p class=\"blog-post-meta\">" + ConvTime(data.created_at) + " by <a href=\"" + data.user.html_url + "\">" + data.user.login + "</a></p>";
+				if(data.labels){
+					html += "<p class=\"blog-post-lables\">";
+					$.each(data.labels, function(index, item){
+						html += "<a class=\"badge badge-success mr-1\" href=\"?type=2&tag=" + item.name + "\">" + item.name + "</a>";
+					});
+					html += "</p>";
+				}
+				html += "<p>" + marked(data.body) + "</p>";
+				html += "</div><!-- /.blog-post -->";
+				$("#blog-main").append(html);
+				$("#blog-content").velocity('transition.fadeIn');
+				$.getScript("src/js/lib/highlight.min.js", PrettifyCode);
+				if(data.comments){
+					Loader.getComments(id);
+				}
+				//$("img.lazyload").lazyload({placeholder:"imgs/blank.gif",effect:"fadeIn",threshold:180});
+				$.getScript("https://cdn.bootcss.com/mathjax/2.7.2/MathJax.js?config=TeX-AMS-MML_HTMLorMML"); //MathJax.js
+			},
+			error: function(){
+				Loader.getOneBlog(id);
 			}
-			html += "<p>" + marked(data.body) + "</p>";
-			html += "</div><!-- /.blog-post -->";
-			$("#blog-main").append(html);
-			$("#blog-content").velocity('transition.fadeIn');
-			$.getScript("src/js/lib/highlight.min.js", PrettifyCode);
-			if(data.comments){
-				Loader.getComments(id);
-			}
-			$("img.lazyload").lazyload({placeholder:"imgs/blank.gif",effect:"fadeIn",threshold:180});
-			$.getScript("https://cdn.bootcss.com/mathjax/2.7.2/MathJax.js?config=TeX-AMS-MML_HTMLorMML"); //MathJax.js
 		});
 	},
 	getComments: function(id){
-		var temp = '<div id="comloader" class="p-2"><div class="loader--audioWave"></div></div>';
-		temp += '<div id="comments" class="p-2"><h4 class="font-italic">Comments</h4><hr /></div>';
-		$("#blog-main").append(temp);
-		$.get("https://api.github.com/repos/"+USERNAME+"/"+REPONAME+"/issues/"+id+"/comments"+AuthGet(), function(data){
-			$("#comloader").hide();
-			$.each(data, function(index, item){
-				var html = "<div class=\"p-2 blog-comment\">";
-				html += "<p class=\"blog-post-meta\"><a target=\"_blank\" href=\"" + item.user.html_url + "\">" + item.user.login + "</a> " + ConvTime(item.created_at) + "</p>";
-				html += "<p>" + marked(item.body) + "</p>";
-				html += "</div><!-- /.blog-comment -->";
-				$("#comments").append(html);
-			});
+		$.ajax({
+			url: "https://api.github.com/repos/"+USERNAME+"/"+REPONAME+"/issues/"+id+"/comments"+AuthGet(),
+			success: function(data){
+				$("#comloader").hide();
+				var temp = '<div id="comloader" class="p-2"><div class="loader--audioWave"></div></div>';
+				temp += '<div id="comments" class="p-2"><h4 class="font-italic">Comments</h4><hr /></div>';
+				$("#blog-main").append(temp);
+				$.each(data, function(index, item){
+					var html = "<div class=\"p-2 blog-comment\">";
+					html += "<p class=\"blog-post-meta\"><a target=\"_blank\" href=\"" + item.user.html_url + "\">" + item.user.login + "</a> " + ConvTime(item.created_at) + "</p>";
+					html += "<p>" + marked(item.body) + "</p>";
+					html += "</div><!-- /.blog-comment -->";
+					$("#comments").append(html);
+				});
+			},
+			error: function(){
+				Loader.getComments(id);
+			}
 		});
 	},
 	getMoreBlogs: function(){
 		$("#pagination").hide();
 		$("#mainloader").show();
-		$.get("https://api.github.com/repos/"+USERNAME+"/"+REPONAME+"/issues"+AuthGet()+"&state=open&page="+Loader.my_pn+"&per_page="+per_page, function(data){
-			$("#mainloader").hide();
-			$.each(data, function(index, item){
-				var html = "<div class=\"p-2 blog-post\">";
-				html += "<h3 class=\"blog-post-title\"><a style=\"color:black;text-decoration:none;\" href=\"?type=1&aid=" + item.number + "\">" + item.title + "</a></h3>";
-				html += "<p class=\"blog-post-meta\">" + ConvTime(item.created_at) + " by <a target=\"_blank\" href=\"" + item.user.html_url + "\">" + item.user.login + "</a></p>";
-				html += "<p>" + SubText(item.body, item.number) + "</p>";
-				html += "</div><!-- /.blog-post -->";
-				$("#blog-post").append(html);
-			});
-			//$("#blog-post").velocity('transition.fadeIn');
-			if(Loader.my_pn < Loader.max_pn){
-				$("#pagination").show();
-			}else{
-				$("#pagination").hide();
+		$.ajax({
+			url: "https://api.github.com/repos/"+USERNAME+"/"+REPONAME+"/issues"+AuthGet()+"&state=open&page="+Loader.my_pn+"&per_page="+per_page,
+			success: function(data){
+				$("#mainloader").hide();
+				$.each(data, function(index, item){
+					var html = "<div class=\"p-2 blog-post\">";
+					html += "<h3 class=\"blog-post-title\"><a style=\"color:black;text-decoration:none;\" href=\"?type=1&aid=" + item.number + "\">" + item.title + "</a></h3>";
+					html += "<p class=\"blog-post-meta\">" + ConvTime(item.created_at) + " by <a target=\"_blank\" href=\"" + item.user.html_url + "\">" + item.user.login + "</a></p>";
+					html += "<p>" + SubText(item.body, item.number) + "</p>";
+					html += "</div><!-- /.blog-post -->";
+					$("#blog-post").append(html);
+				});
+				//$("#blog-post").velocity('transition.fadeIn');
+				if(Loader.my_pn < Loader.max_pn){
+					$("#pagination").show();
+				}else{
+					$("#pagination").hide();
+				}
+				Loader.my_pn++;
+			},
+			error: function(){
+				Loader.getMoreBlogs();
 			}
-			Loader.my_pn++;
 		});
 	},
 	getBlogList: function(){
 		$("#sideloader").show();
-		$.get("https://api.github.com/repos/"+USERNAME+"/"+REPONAME+"/issues"+AuthGet()+"&state=open&per_page="+per_page, function(data){
-			$("#sideloader").hide();
-			$.each(data, function(index, item){
-				$("#side-list").append("<li><a href=\"?type=1&aid=" + item.number + "\">" + item.title + "</a></li>");
-			});
-			$("#side-list").velocity('transition.fadeIn');
+		$.ajax({
+			url: "https://api.github.com/repos/"+USERNAME+"/"+REPONAME+"/issues"+AuthGet()+"&state=open&per_page="+per_page,
+			success: function(data){
+				$("#sideloader").hide();
+				$.each(data, function(index, item){
+					$("#side-list").append("<li><a href=\"?type=1&aid=" + item.number + "\">" + item.title + "</a></li>");
+				});
+				$("#side-list").velocity('transition.fadeIn');
+			},
+			error: function(){
+				Loader.getBlogList();
+			}
 		});
 	},
 	getTagBlogs: function(tag){
 		$("#mainloader").show();
-		$.get("https://api.github.com/repos/"+USERNAME+"/"+REPONAME+"/issues"+AuthGet()+"&state=open&labels="+tag, function(data){
-			$("#mainloader").hide();
-			$("#blog-main").append('<div class="p-2"><h2>#'+tag+'</h2><hr /></div>');
-			$.each(data, function(index, item){
-				var html = "<div class=\"p-2 blog-post\">";
-				html += "<h3 class=\"blog-post-title\"><a style=\"color:black;text-decoration:none;\" href=\"?type=1&aid=" + item.number + "\">" + item.title + "</a></h3>";
-				html += "<p class=\"blog-post-meta\">" + ConvTime(item.created_at) + " by <a href=\"" + item.user.html_url + "\">" + item.user.login + "</a></p>";
-				html += "<p>" + SubText(item.body, item.number) + "</p>";
-				html += "</div><!-- /.blog-post -->";
-				$("#blog-main").append(html);
-			});
+		$.ajax({
+			url: "https://api.github.com/repos/"+USERNAME+"/"+REPONAME+"/issues"+AuthGet()+"&state=open&labels="+tag,
+			success: function(data){
+				$("#mainloader").hide();
+				$("#blog-main").append('<div class="p-2"><h2>#'+tag+'</h2><hr /></div>');
+				$.each(data, function(index, item){
+					var html = "<div class=\"p-2 blog-post\">";
+					html += "<h3 class=\"blog-post-title\"><a style=\"color:black;text-decoration:none;\" href=\"?type=1&aid=" + item.number + "\">" + item.title + "</a></h3>";
+					html += "<p class=\"blog-post-meta\">" + ConvTime(item.created_at) + " by <a href=\"" + item.user.html_url + "\">" + item.user.login + "</a></p>";
+					html += "<p>" + SubText(item.body, item.number) + "</p>";
+					html += "</div><!-- /.blog-post -->";
+					$("#blog-main").append(html);
+				});
+			},
+			error: function(){
+				Loader.getTagBlogs(tag);
+			}
 		});
 	},
 	searchBlog: function(qstr){

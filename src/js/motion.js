@@ -1,3 +1,4 @@
+"use strict";
 $(document).ready(function(){
 	var motionIntegrator = {
 		queue: [],
@@ -45,7 +46,7 @@ $(document).ready(function(){
 		footer: function (integrator) {
 			$("#blogfooter").velocity('transition.slideDownIn', {
 				display: null,
-				duration: 800,
+				duration: 400,
 				complete: function () {
 					integrator.next();
 				}
