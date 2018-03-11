@@ -125,9 +125,9 @@ var Loader = {
 		$.ajax({
 			url: "https://api.github.com/repos/"+USERNAME+"/"+REPONAME+"/issues/"+id+"/comments"+AuthGet(),
 			success: function(data){
-				$("#comloader").hide();
-				var temp = '<div id="comloader" class="p-2"><div class="loader--audioWave"></div></div>';
-				temp += '<div id="comments" class="p-2"><h4 class="font-italic">Comments</h4><hr /></div>';
+				//$("#comloader").hide();
+				//temp = '<div id="comloader" class="p-2"><div class="loader--audioWave"></div></div>';
+				var temp = '<div id="comments" class="p-2"><h4 class="font-italic">Comments</h4><hr /></div>';
 				$("#blog-main").append(temp);
 				$.each(data, function(index, item){
 					var html = "<div class=\"p-2 blog-comment\">";
