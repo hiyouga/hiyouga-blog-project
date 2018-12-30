@@ -26,7 +26,3 @@ require.config({
 require(['jquery', 'jquery-cookie', 'velocity', 'velocity-ui', 'bootstrap', 'marked', 'fancybox', 'motion', 'core'], function() {
 	console.log("Load completed!")
 });
-
-require('fastclick', function(FastClick){
-	FastClick.attach(document.body);
-});
