@@ -9,8 +9,7 @@ require.config({
 		"marked" : "lib/marked.min",
 		"fancybox" : "lib/jquery.fancybox.min",
 		"lazyload" : "lib/jquery.lazyload.min",
-		"fastclick" : "lib/fastclick",
-		"busuanzi" : "http://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini"
+		"fastclick" : "lib/fastclick"
 	},
 	shim: {
 		"jquery-cookie" : {deps:["jquery"]},
