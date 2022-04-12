@@ -1,0 +1,92 @@
+{
+	"yuzu_stella": {
+		"postdata": {
+			"link": "B49E8F4054433B75DFA47DAE85835449",
+			"password": "",
+			"docid": "gns://CB43F4DFA46546CF912BDAE127719786/E19352ED171E492D9A8E560B2BD0AF44/CDD3225BB80D4870AE47ADCC9A4563C6",
+			"reqhost": "bhpan.buaa.edu.cn",
+			"usehttps": true,
+			"savename": "yuzu_stella.mp4"
+		},
+		"poster": "https://i.loli.net/2020/01/12/4nqHTIKF8vWQi76.jpg",
+		"title": "喫茶ステラと死神の蝶OP",
+		"desc": "v=M-yz3abHY3o\nOP主題歌「Smiling-Swinging!!」\n歌：米倉千尋\n作詞：春風まゆき（AngelNote）\n作曲：Famishin（ゆずソフト）\n編曲：井ノ原智（AngelNote）",
+		"category": "galgame",
+		"is_public": true
+	},
+	"kamisama_2nd": {
+		"postdata": {
+			"link": "8B3365B388F962681DECD9F8620AE38F",
+			"password": "",
+			"docid": "gns://CB43F4DFA46546CF912BDAE127719786/E19352ED171E492D9A8E560B2BD0AF44/F21FF5F6A42740E19AF2E83D6C3A3E81",
+			"reqhost": "bhpan.buaa.edu.cn",
+			"usehttps": true,
+			"savename": "kamisama_2ndop.mp4"
+		},
+		"poster": "https://i.loli.net/2020/01/12/a1cUenbNIoWR7PS.jpg",
+		"title": "神様のしっぽ ～干支神さまたちの恩返し～ 2ndOP",
+		"desc": "2ndオープニングテーマ「つよくむすんで」\n作詞・作曲・歌唱：薬師るり\n編曲：根本克則(KParaMUSIC)",
+		"category": "galgame",
+		"is_public": true
+	},
+	"hololove": {
+		"postdata": {
+			"link": "48839EF0273D502040A0600140147881",
+			"password": "",
+			"docid": "gns://CB43F4DFA46546CF912BDAE127719786/E19352ED171E492D9A8E560B2BD0AF44/A8A3261BF1AC44EAB13129ACD5CDE85D",
+			"reqhost": "bhpan.buaa.edu.cn",
+			"usehttps": true,
+			"savename": "hololove.mp4"
+		},
+		"poster": "https://i.loli.net/2020/01/14/Hr4ESD2FQXs73kc.jpg",
+		"title": "【HOLOLOVE?】hololive&tolove op描改手书",
+		"desc": "av83027006\n修改了一天 ，终于成为了高雅的艺术作品，希望大家多多品鉴，^^",
+		"category": "vtuber",
+		"is_public": false
+	},
+	"invisible": {
+		"postdata": {
+			"link": "093EC37317732A69A70D09072B28C554",
+			"password": "",
+			"docid": "gns://CB43F4DFA46546CF912BDAE127719786/E19352ED171E492D9A8E560B2BD0AF44/D4D0EBEE4AFB4019B58FA74DD8BEB757",
+			"reqhost": "bhpan.buaa.edu.cn",
+			"usehttps": true,
+			"savename": "invisible.mp4"
+		},
+		"poster": "https://i.loli.net/2020/01/31/nPzOhjRruTIYpGe.jpg",
+		"title": "俺の姿が、透明に！？ 不可視の薬と数奇な運命OP",
+		"desc": "v=gUlpsCPDHLk\nOP主題歌「Clearly」\n歌：Duca\n作詞：Duca\n作曲：鈴木ぷよ\n原画：池上 茜\nシナリオ：姫ノ木あく、蜷岸準一、桐生恭丞、保住圭\nBGM：Peak A Soul+\n発売日：2020年3月27日発売予定\n公式サイト：http://hulotte.jp/product/invisible/",
+		"category": "galgame",
+		"is_public": true
+	},
+	"elite19a": {
+		"postdata": {
+			"link": "C0945B793AB9F3B932CF6CDE8AB3584D",
+			"password": "",
+			"docid": "gns://CB43F4DFA46546CF912BDAE127719786/E19352ED171E492D9A8E560B2BD0AF44/64C37E4989A945C6A26DAD51E8C8C98A",
+			"reqhost": "bhpan.buaa.edu.cn",
+			"usehttps": true,
+			"savename": "新作组.mp4"
+		},
+		"poster": "https://i.loli.net/2020/02/29/SscWIYC3pKq1oH6.jpg",
+		"title": "Elite Galgame 2019 新作组",
+		"desc": "Elite Galgame 2019 新作组",
+		"category": "galgame",
+		"is_public": false
+	},
+	"elite19b": {
+		"postdata": {
+			"link": "2AA2DEEE624146B96F1027B11969F13C",
+			"password": "",
+			"docid": "gns://CB43F4DFA46546CF912BDAE127719786/E19352ED171E492D9A8E560B2BD0AF44/6D16DC711BCD4577B5C5BCB3CC1F827C",
+			"reqhost": "bhpan.buaa.edu.cn",
+			"usehttps": true,
+			"savename": "汉化组.mp4"
+		},
+		"poster": "https://i.loli.net/2020/02/29/SscWIYC3pKq1oH6.jpg",
+		"title": "Elite Galgame 2019 汉化组",
+		"desc": "Elite Galgame 2019 汉化组",
+		"category": "galgame",
+		"is_public": false
+	}
+}

@@ -1,0 +1,58 @@
+<!doctype html>
+<html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<meta name="description" content="" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	<title>PuliPuli (゜-゜)つロ 乾杯~</title>
+	<link rel="stylesheet" href="src/css/bootstrap.min.css" />
+	<link rel="stylesheet" href="src/css/plyr.css" />
+	<link rel="stylesheet" href="src/css/core.css" />
+</head>
+<body>
+	<nav class="navbar navbar-expand-md navbar-light p-3 px-md-4 mb-3 bg-white border-bottom shadow-sm">
+		<a class="navbar-brand" href="?">PuliPuli (゜-゜)つロ 乾杯~</a>
+		<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
+			<span class="navbar-toggler-icon"></span>
+		</button>
+		<div class="collapse navbar-collapse" id="navbarText">
+			<ul class="navbar-nav mr-auto">
+				<li class="nav-item active">
+					<a class="nav-link" href="?">主页</a>
+				</li>
+			</ul>
+			<a id="dl-btn" class="btn btn-outline-success" download>下载后更流畅哦</a>
+		</div>
+	</nav>
+	<div class="container">
+		<div id="vlist" class="row row-cols-1 row-cols-md-3"></div>
+		<video id="player"></video>
+		<div id="vinfo" class="m-2 mt-3">
+			<h4 id="vtitle" class="pt-2 pb-2"></h4>
+			<p id="vdesc"></p>
+		</div>
+	</div>
+	<div class="modal fade" id="tips" tabindex="-1" role="dialog" aria-labelledby="tipstitle" aria-hidden="true">
+		<div class="modal-dialog modal-dialog-centered" role="document">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h5 class="modal-title" id="tipstitle">视频播放错误~>_<~</h5>
+					<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+					</button>
+				</div>
+				<div class="modal-body">
+					网络好像出了些问题，3秒后页面自动刷新
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-secondary" data-dismiss="modal">好哒</button>
+				</div>
+			</div>
+		</div>
+	</div>
+	<script src="src/js/jquery-3.4.1.min.js"></script>
+	<script src="src/js/bootstrap.min.js"></script>
+	<script src="src/js/plyr.min.js"></script>
+	<script src="src/js/core.js"></script>
+</body>
+</html>
