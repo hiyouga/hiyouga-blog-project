@@ -22,7 +22,7 @@ $(document).ready(function () {
 			"docid": GetUrlValue("docid"),
 			"reqhost": "bhpan.buaa.edu.cn",
 			"usehttps": true,
-			"savename": "default"
+			"savename": GetUrlValue("savename")
 		}
 		$.ajax({
 			type: "POST",
@@ -40,7 +40,6 @@ $(document).ready(function () {
 			},
 			error: function(xhr) {
 				console.log(xhr.status + xhr.statusText);
-				raise();
 			}
 		});
 	}
