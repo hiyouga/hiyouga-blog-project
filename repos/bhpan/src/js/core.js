@@ -41,11 +41,11 @@ $(document).ready(function () {
 				var player = new Plyr("#player");
 			},
 			error: function(xhr) {
-				$("#loading").text("视频无法加载");
+				$("#info").text("视频无法加载");
 				console.log(xhr.status + xhr.statusText);
 			}
 		});
 	} else {
-		$("#loading").text("视频无法加载");
+		$("#info").text("视频无法加载");
 	}
 });
