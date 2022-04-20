@@ -66,9 +66,7 @@ $(document).ready(function () {
 					$("#player").attr("data-poster", jsondata[vcode]["poster"]);
 					$("#vtitle").text(jsondata[vcode]["title"]);
 					$("#vdesc").html(autolink(jsondata[vcode]["desc"]));
-					if (Plyr != undefined) {
-						var player = new Plyr("#player");
-					}
+					var player = new Plyr("#player");
 				},
 				error: function(xhr) {
 					console.log(xhr.status + xhr.statusText);
