@@ -1,0 +1,27 @@
+<!doctype html>
+<html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<meta name="description" content="" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	<title>BUAA Netdisk Direct Play</title>
+	<link rel="stylesheet" href="src/css/bootstrap.min.css" />
+	<link rel="stylesheet" href="src/css/plyr.css" />
+	<link rel="stylesheet" href="src/css/core.css" />
+</head>
+<body>
+	<nav class="navbar navbar-expand-md navbar-light p-3 px-md-4 mb-3 bg-white border-bottom shadow-sm">
+		BUAA Netdisk Direct Play <a id="dl-btn" class="btn btn-outline-success" download>下载</a>
+	</nav>
+	<div class="container">
+		<div id="loading">视频加载中……</div>
+		<video id="player" playsinline controls>
+			<source id="vcontent" type="video/mp4" />
+		</video>
+	</div>
+	<script src="src/js/jquery-3.6.0.min.js"></script>
+	<script src="src/js/bootstrap.min.js"></script>
+	<script src="src/js/plyr.min.js"></script>
+	<script src="src/js/direct.js"></script>
+</body>
+</html>

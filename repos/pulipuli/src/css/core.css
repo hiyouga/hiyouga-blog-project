@@ -12,6 +12,10 @@ a:hover {
 	display: none;
 }
 
+#dl-btn {
+	margin-left: 1em;
+}
+
 .card-text {
 	white-space: pre-wrap;
 	max-height: 140px;
