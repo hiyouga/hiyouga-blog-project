@@ -16,6 +16,10 @@ var GetUrlValue = function (name) {
 $(document).ready(function () {
 	var link = GetUrlValue("link");
 	if (link != null) {
+		var enable_vtt = GetUrlValue("enable_vtt")
+		if (enable_vtt == "true") {
+			$("#vcaption").attr("src", "vtt/" + GetUrlValue("savename") + ".vtt");
+		}
 		var postdata = {
 			"link": link,
 			"password": GetUrlValue("password"),
@@ -42,5 +46,7 @@ $(document).ready(function () {
 				console.log(xhr.status + xhr.statusText);
 			}
 		});
+	} else {
+		$("#loading").text("视频无法加载");
 	}
 });
