@@ -1,4 +1,19 @@
 {
+	"koumei03": {
+		"postdata": {
+			"link": "851C69AFC82BE995B917DB62D897ABE7",
+			"password": "",
+			"docid": "gns://3BE0120867154A5BB1A5C8AE9BF60D82/66695DBA5D834898A87F298638541AB8/A9D75F863B1F425A90E76181542D7989",
+			"reqhost": "bhpan.buaa.edu.cn",
+			"usehttps": true,
+			"savename": "[LPSub]Paripi Koumei[03][AVC AAC][1080p][CHS].mp4"
+		},
+		"poster": "https://p.inari.site/guest/22-04/12/6255693838ee0.jpg",
+		"title": "派对浪客诸葛孔明03",
+		"desc": "离谱字幕组1080p",
+		"category": "anime",
+		"is_public": true
+	},
 	"koumei02": {
 		"postdata": {
 			"link": "9DE40FB32373BBC60A843BCCBEB0BC4D",
@@ -42,7 +57,7 @@
 		"title": "喫茶ステラと死神の蝶OP",
 		"desc": "v=M-yz3abHY3o\nOP主題歌「Smiling-Swinging!!」\n歌：米倉千尋\n作詞：春風まゆき（AngelNote）\n作曲：Famishin（ゆずソフト）\n編曲：井ノ原智（AngelNote）",
 		"category": "galgame",
-		"is_public": true
+		"is_public": false
 	},
 	"invisible": {
 		"postdata": {
@@ -57,7 +72,7 @@
 		"title": "俺の姿が、透明に！？ 不可視の薬と数奇な運命OP",
 		"desc": "v=gUlpsCPDHLk\nOP主題歌「Clearly」\n歌：Duca\n作詞：Duca\n作曲：鈴木ぷよ\n原画：池上 茜\nシナリオ：姫ノ木あく、蜷岸準一、桐生恭丞、保住圭\nBGM：Peak A Soul+\n発売日：2020年3月27日発売予定\n公式サイト：http://hulotte.jp/product/invisible/",
 		"category": "galgame",
-		"is_public": true
+		"is_public": false
 	},
 	"elite19a": {
 		"postdata": {
