@@ -16,9 +16,9 @@ var GetUrlValue = function (name) {
 $(document).ready(function () {
 	var link = GetUrlValue("link");
 	if (link != null) {
-		var enable_vtt = GetUrlValue("enable_vtt")
-		if (enable_vtt == "true") {
-			$("#vcaption").attr("src", "vtt/" + GetUrlValue("savename") + ".vtt");
+		var vtt = GetUrlValue("vtt")
+		if (vtt == "true") {
+			$("#player").append("<track kind=\"captions\" label=\"字幕\" srclang=\"zh\" src=\"vtt/" + GetUrlValue("savename") +  ".vtt\" default />")
 		}
 		var postdata = {
 			"link": link,
@@ -37,12 +37,11 @@ $(document).ready(function () {
 				var vlink = data.authrequest[1];
 				$("#loading").hide();
 				$("#player").show();
-				$("#dl-btn").show();
-				$("#dl-btn").attr("href", vlink);
 				$("#vcontent").attr("src", vlink);
 				var player = new Plyr("#player");
 			},
 			error: function(xhr) {
+				$("#loading").text("视频无法加载");
 				console.log(xhr.status + xhr.statusText);
 			}
 		});
