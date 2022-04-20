@@ -54,7 +54,7 @@ $(document).ready(function () {
 			$.ajax({
 				type: "POST",
 				dataType: "json",
-				url: "https://bhpan.buaa.edu.cn:9124/v1/link?method=osdownload",
+				url: "https://bhpan.buaa.edu.cn/api/v1/link?method=osdownload",
 				data: JSON.stringify(jsondata[vcode]["postdata"]),
 				success: function(data, status) {
 					var link = data.authrequest[1];
