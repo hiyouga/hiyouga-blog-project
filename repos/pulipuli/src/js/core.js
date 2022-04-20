@@ -62,18 +62,10 @@ $(document).ready(function () {
 					$("#vinfo").show();
 					$("#dl-btn").show();
 					$("#dl-btn").attr("href", link);
-					$("#player").attr("src", link);
-					$("#player").attr("poster", jsondata[vcode]["poster"]);
+					$("#vcontent").attr("src", link);
+					$("#player").attr("data-poster", jsondata[vcode]["poster"]);
 					$("#vtitle").text(jsondata[vcode]["title"]);
 					$("#vdesc").html(autolink(jsondata[vcode]["desc"]));
-					if (Plyr != undefined) {
-						var player = new Plyr("#player");
-						player.on('pause', event => {
-							if (player.duration == 0) {
-								raise();
-							}
-						});
-					}
 				},
 				error: function(xhr) {
 					console.log(xhr.status + xhr.statusText);

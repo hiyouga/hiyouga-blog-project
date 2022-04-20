@@ -4,7 +4,7 @@
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 	<meta name="description" content="" />
 	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-	<title>PuliPuli (゜-゜)つロ 乾杯~</title>
+	<title>PuliPuli (゜-゜)つロ 乾杯~ | 你所热爱的，就是你的生活</title>
 	<link rel="stylesheet" href="src/css/bootstrap.min.css" />
 	<link rel="stylesheet" href="src/css/plyr.css" />
 	<link rel="stylesheet" href="src/css/core.css" />
@@ -26,7 +26,9 @@
 	</nav>
 	<div class="container">
 		<div id="vlist" class="row row-cols-1 row-cols-md-3"></div>
-		<video id="player"></video>
+		<video id="player" playsinline controls>
+			<source id="vcontent" type="video/mp4" />
+		</video>
 		<div id="vinfo" class="m-2 mt-3">
 			<h4 id="vtitle" class="pt-2 pb-2"></h4>
 			<p id="vdesc"></p>
@@ -50,7 +52,7 @@
 			</div>
 		</div>
 	</div>
-	<script src="src/js/jquery-3.4.1.min.js"></script>
+	<script src="src/js/jquery-3.6.0.min.js"></script>
 	<script src="src/js/bootstrap.min.js"></script>
 	<script src="src/js/plyr.min.js"></script>
 	<script src="src/js/core.js"></script>
