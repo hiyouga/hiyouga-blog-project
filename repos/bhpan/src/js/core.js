@@ -15,30 +15,55 @@ var GetUrlValue = function (name) {
 
 $(document).ready(function () {
 	var link = GetUrlValue("link");
+	var savename = GetUrlValue("savename");
+	var vtt = GetUrlValue("vtt");
+	const player = new Plyr("#player", {
+		title: savename,
+		settings: ["captions", "speed", "loop"],
+		blankVideo: "https://cdn.plyr.io/static/blank.mp4",
+		invertTime: false
+	});
 	if (link != null) {
-		var vtt = GetUrlValue("vtt")
-		if (vtt == "true") {
-			$("#player").append("<track kind=\"captions\" label=\"字幕\" srclang=\"zh\" src=\"vtt/" + GetUrlValue("savename") +  ".vtt\" default />")
-		}
 		var postdata = {
 			"link": link,
 			"password": GetUrlValue("password"),
 			"docid": GetUrlValue("docid"),
 			"reqhost": "bhpan.buaa.edu.cn",
 			"usehttps": true,
-			"savename": GetUrlValue("savename")
+			"savename": savename
 		}
 		$.ajax({
 			type: "POST",
 			dataType: "json",
 			url: "https://bhpan.buaa.edu.cn/api/v1/link?method=osdownload",
 			data: JSON.stringify(postdata),
+			timeout: 30000,
 			success: function(data, status) {
 				var vlink = data.authrequest[1];
+				var tracks = new Array();
+				if (vtt != null) {
+					var langs = vtt.split(",");
+					for (var i = 0; i < langs.length; i++) {
+						tracks.push({
+							kind: "captions",
+							label: langs[i],
+							srclang: langs[i],
+							src: "vtt/" + savename + "." +  langs[i] +  ".vtt"
+						});
+					}
+					tracks[0].default = true;
+				}
+				player.source = {
+					type: "video",
+					title: savename,
+					sources: [{
+						src: vlink,
+						type: "video/mp4"
+					}],
+					tracks: tracks
+				}
 				$("#loading").hide();
 				$("#player").show();
-				$("#vcontent").attr("src", vlink);
-				var player = new Plyr("#player");
 			},
 			error: function(xhr) {
 				$("#info").text("视频无法加载");
