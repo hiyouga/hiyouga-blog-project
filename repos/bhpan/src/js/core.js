@@ -19,7 +19,7 @@ $(document).ready(function () {
 	var vtt = GetUrlValue("vtt");
 	const player = new Plyr("#player", {
 		title: savename,
-		settings: ["captions", "speed", "loop"],
+		captions: {active: true},
 		blankVideo: "https://cdn.plyr.io/static/blank.mp4",
 		invertTime: false
 	});
