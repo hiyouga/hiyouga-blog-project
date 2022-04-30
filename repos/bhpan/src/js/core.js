@@ -62,9 +62,6 @@ $(document).ready(function () {
 					}],
 					tracks: tracks
 				}
-				if (vtt != null) {
-					player.toggleCaptions();
-				}
 				$("#loading").hide();
 				$("#player").show();
 			},
