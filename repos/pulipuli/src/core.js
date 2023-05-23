@@ -2,7 +2,7 @@
 
 var GetUrlValue = function (name) {
 	var reg = new RegExp('(^|&)' + name + '=([^&]*)(&|$)', 'i');
-	var r = window.location.search.substr(1).match(reg);
+	var r = window.location.search.substring(1).match(reg);
 	if (r != null) {
 		try {
 			return decodeURIComponent(r[2]);
