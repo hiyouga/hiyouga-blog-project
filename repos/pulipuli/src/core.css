@@ -1,45 +1,45 @@
 a {
-	color: #666666;
-	text-decoration: none;
+    color: #666666;
+    text-decoration: none;
 }
 
 a:hover {
-	color: #000000;
-	text-decoration: none;
+    color: #000000;
+    text-decoration: none;
 }
 
 #dl-btn, #player, #vinfo {
-	display: none;
+    display: none;
 }
 
 #dl-btn {
-	margin-left: 1em;
+    margin-left: 1em;
 }
 
 .card-text {
-	white-space: pre-wrap;
-	max-height: 140px;
-	overflow: hidden;
+    white-space: pre-wrap;
+    max-height: 140px;
+    overflow: hidden;
 }
 
 .card-img-top {
-	width: 100%;
-	height: 30vh;
-	object-fit: cover;
+    width: 100%;
+    height: 30vh;
+    object-fit: cover;
 }
 
 .reproduce {
-	color: #00a1d6;
+    color: #00a1d6;
 }
 
 .reproduce:hover {
-	color: #00a1d6;
-	text-decoration: underline;
+    color: #00a1d6;
+    text-decoration: underline;
 }
 
 #vdesc {
-	white-space: pre-wrap;
-	color: #333333;
-	font-size: 16px;
-	line-height: 24px;
+    white-space: pre-wrap;
+    color: #333333;
+    font-size: 16px;
+    line-height: 24px;
 }
