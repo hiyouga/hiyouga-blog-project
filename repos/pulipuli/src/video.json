@@ -1,4 +1,37 @@
 {
+  "bokuyaba": {
+    "videos": [
+      {
+        "link": "3121B1DB7DC0E0B5102ABA1576F7E6D7",
+        "password": "",
+        "docid": "gns://F310262A96F84A18BCCF46E95BC6EBDB/E1773677A1FF4C0EB39CBA3C292F196A/14E9BDFE288642D2B58A1D5E69B0FB4B/07EA21C103EE4722BC477A647F9B004E",
+        "reqhost": "bhpan.buaa.edu.cn",
+        "usehttps": true,
+        "savename": "[Nekomoe kissaten][Boku no Kokoro no Yabai Yatsu][01][1080p][JPSC].mp4"
+      },
+      {
+        "link": "665D8CC34E9931C0716CC8D6405AB1FF",
+        "password": "",
+        "docid": "gns://F310262A96F84A18BCCF46E95BC6EBDB/E1773677A1FF4C0EB39CBA3C292F196A/14E9BDFE288642D2B58A1D5E69B0FB4B/803C5624FCC04263A5C9468BDE866964",
+        "reqhost": "bhpan.buaa.edu.cn",
+        "usehttps": true,
+        "savename": "[Nekomoe kissaten][Boku no Kokoro no Yabai Yatsu][02][1080p][JPSC].mp4"
+      },
+      {
+        "link": "580DCA9179C091D4F4FAE0C00055BDBE",
+        "password": "",
+        "docid": "gns://F310262A96F84A18BCCF46E95BC6EBDB/E1773677A1FF4C0EB39CBA3C292F196A/14E9BDFE288642D2B58A1D5E69B0FB4B/4EA59B63B57143F18E616EA9D3A4EECC",
+        "reqhost": "bhpan.buaa.edu.cn",
+        "usehttps": true,
+        "savename": "[Nekomoe kissaten][Boku no Kokoro no Yabai Yatsu][03][1080p][JPSC].mp4"
+      }
+    ],
+    "poster": "https://p.inari.site/guest/23-06/24/6496755fcb549.jpg",
+    "title": "我内心的糟糕念头",
+    "desc": "喵萌奶茶屋1080p",
+    "category": "anime",
+    "is_public": true
+  },
   "tenten": {
     "videos": [
       {
@@ -242,23 +275,6 @@
     "category": "anime",
     "is_public": true
   },
-  "yuzu_stella": {
-    "videos": [
-      {
-        "link": "B49E8F4054433B75DFA47DAE85835449",
-        "password": "",
-        "docid": "gns://CB43F4DFA46546CF912BDAE127719786/E19352ED171E492D9A8E560B2BD0AF44/CDD3225BB80D4870AE47ADCC9A4563C6",
-        "reqhost": "bhpan.buaa.edu.cn",
-        "usehttps": true,
-        "savename": "yuzu_stella.mp4"
-      }
-    ],
-    "poster": "https://i.loli.net/2020/01/12/4nqHTIKF8vWQi76.jpg",
-    "title": "喫茶ステラと死神の蝶OP",
-    "desc": "v=M-yz3abHY3o\nOP主題歌「Smiling-Swinging!!」\n歌：米倉千尋\n作詞：春風まゆき（AngelNote）\n作曲：Famishin（ゆずソフト）\n編曲：井ノ原智（AngelNote）",
-    "category": "galgame",
-    "is_public": false
-  },
   "invisible": {
     "videos": [
       {
@@ -273,31 +289,6 @@
     "poster": "https://i.loli.net/2020/01/31/nPzOhjRruTIYpGe.jpg",
     "title": "俺の姿が、透明に！？ 不可視の薬と数奇な運命OP",
     "desc": "v=gUlpsCPDHLk\nOP主題歌「Clearly」\n歌：Duca\n作詞：Duca\n作曲：鈴木ぷよ\n原画：池上 茜\nシナリオ：姫ノ木あく、蜷岸準一、桐生恭丞、保住圭\nBGM：Peak A Soul+\n発売日：2020年3月27日発売予定\n公式サイト：http://hulotte.jp/product/invisible/",
-    "category": "galgame",
-    "is_public": false
-  },
-  "elite19": {
-    "videos": [
-      {
-        "link": "C0945B793AB9F3B932CF6CDE8AB3584D",
-        "password": "",
-        "docid": "gns://CB43F4DFA46546CF912BDAE127719786/E19352ED171E492D9A8E560B2BD0AF44/64C37E4989A945C6A26DAD51E8C8C98A",
-        "reqhost": "bhpan.buaa.edu.cn",
-        "usehttps": true,
-        "savename": "新作组.mp4"
-      },
-      {
-        "link": "2AA2DEEE624146B96F1027B11969F13C",
-        "password": "",
-        "docid": "gns://CB43F4DFA46546CF912BDAE127719786/E19352ED171E492D9A8E560B2BD0AF44/6D16DC711BCD4577B5C5BCB3CC1F827C",
-        "reqhost": "bhpan.buaa.edu.cn",
-        "usehttps": true,
-        "savename": "汉化组.mp4"
-      }
-    ],
-    "poster": "https://i.loli.net/2020/02/29/SscWIYC3pKq1oH6.jpg",
-    "title": "Elite Galgame 2019",
-    "desc": "Elite Galgame 2019",
     "category": "galgame",
     "is_public": false
   }
