@@ -10,30 +10,38 @@
     <link rel="stylesheet" href="src/core.css" />
 </head>
 <body>
-    <nav class="navbar navbar-expand-md navbar-light p-3 px-md-4 mb-3 bg-white border-bottom shadow-sm">
-        <a class="navbar-brand" href="?">PuliPuli (゜-゜)つロ 乾杯~</a>
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse" id="navbarText">
-            <ul class="navbar-nav mr-auto">
-                <li class="nav-item active">
-                    <a class="nav-link" href="?">主页</a>
-                </li>
-            </ul>
-            <a id="dl-btn" class="btn btn-outline-success" download>下载后更流畅哦</a>
+    <header>
+        <nav class="navbar navbar-expand-md navbar-light fixed-top bg-light p-3">
+            <a class="navbar-brand" href="?">PuliPuli (゜-゜)つロ 乾杯~</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="navbar-collapse collapse" id="navbarCollapse">
+                <ul class="navbar-nav mr-auto">
+                    <li class="nav-item active">
+                        <a class="nav-link" href="?">主页</a>
+                    </li>
+                </ul>
+                <a id="dl-btn" class="btn btn-outline-success" download>下载后更流畅哦</a>
+            </div>
+        </nav>
+    </header>
+    <main role="main">
+        <div class="container">
+            <div id="vlist" class="row row-cols-1 row-cols-md-3"></div>
+            <video id="player" playsinline controls>
+                <source id="vcontent" type="video/mp4" />
+            </video>
+            <div id="vinfo" class="m-2 mt-3">
+                <h4 id="vtitle" class="pt-2 pb-2"></h4>
+                <p id="vdesc"></p>
+            </div>
         </div>
-    </nav>
-    <div class="container">
-        <div id="vlist" class="row row-cols-1 row-cols-md-3"></div>
-        <video id="player" playsinline controls>
-            <source id="vcontent" type="video/mp4" />
-        </video>
-        <div id="vinfo" class="m-2 mt-3">
-            <h4 id="vtitle" class="pt-2 pb-2"></h4>
-            <p id="vdesc"></p>
-        </div>
-    </div>
+        <footer class="container">
+            <p class="float-right"><a href="#">Back to top</a></p>
+            <p>Copyright 2014-2023 Hiyouga Project. All rights reserved.</p>
+        </footer>
+    </main>
     <div class="modal fade" id="tips" tabindex="-1" role="dialog" aria-labelledby="tipstitle" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered" role="document">
             <div class="modal-content">
