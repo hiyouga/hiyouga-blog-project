@@ -12,21 +12,23 @@
 <body>
     <header>
         <nav class="navbar navbar-expand-md navbar-light fixed-top bg-light p-3">
-            <a class="navbar-brand" href="?">PuliPuli (゜-゜)つロ 乾杯~</a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="navbar-collapse collapse" id="navbarCollapse">
-                <ul class="navbar-nav mr-auto">
-                    <li class="nav-item active">
-                        <a class="nav-link" href="?">主页</a>
-                    </li>
-                </ul>
-                <a id="dl-btn" class="btn btn-outline-success" download>下载后更流畅哦</a>
+            <div class="container-fluid">
+                <a class="navbar-brand" href="?">PuliPuli (゜-゜)つロ 乾杯~</a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarCollapse">
+                    <ul class="navbar-nav me-auto">
+                        <li class="nav-item active">
+                            <a class="nav-link" href="?">主页</a>
+                        </li>
+                    </ul>
+                    <a id="dl-btn" class="btn btn-outline-success" download>下载后更流畅哦</a>
+                </div>
             </div>
         </nav>
     </header>
-    <main role="main">
+    <main>
         <div class="container">
             <div id="vlist" class="row row-cols-1 row-cols-md-3"></div>
             <video id="player" playsinline controls>
@@ -38,7 +40,7 @@
             </div>
         </div>
         <footer class="container">
-            <p class="float-right"><a href="#">Back to top</a></p>
+            <p class="float-end"><a href="#">Back to top</a></p>
             <p>Copyright 2014-2023 Hiyouga Project. All rights reserved.</p>
         </footer>
     </main>
