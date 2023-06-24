@@ -22,6 +22,12 @@ a:hover {
 	overflow: hidden;
 }
 
+.card-img-top {
+	width: 100%;
+	height: 30vh;
+	object-fit: cover;
+}
+
 .reproduce {
 	color: #00a1d6;
 }

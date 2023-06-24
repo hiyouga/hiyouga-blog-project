@@ -39,14 +39,14 @@ function raise() {
 
 $(document).ready(function () {
     var vcode = GetUrlValue("vcode");
-    var pid = Number(GetUrlValue("pid"));
+    var pid = Number(GetUrlValue("pid")) - 1;
     $.getJSON("src/video.json", function (jsondata) {
         if (jsondata[vcode] == undefined) {
             for (var key in jsondata) {
                 if (jsondata[key]["is_public"] == true) {
-                    var buttons = String();
-                    for (var i = 0; i < jsondata[key]["videos"].length; i++) {
-                        buttons += "<a class=\"btn btn-primary\" href=\"?vcode=" + key + "&pid=" + i + "\">" + i + "</a>";
+                    var pages = String();
+                    for (var i = 1; i <= jsondata[key]["videos"].length; i++) {
+                        pages += "<li class=\"page-item\"><a class=\"page-link\" href=\"?vcode=" + key + "&pid=" + i + "\">" + i + "</a></li>";
                     }
                     $("#vlist").append(
                         "<div class=\"col mb-4\">" +
@@ -55,7 +55,7 @@ $(document).ready(function () {
                                 "<div class=\"card-body\">" +
                                     "<h5 class=\"card-title\">" + jsondata[key]["title"] + "</h5>" +
                                     "<p class=\"card-text\">" + jsondata[key]["desc"] + "</p>" +
-                                    buttons +
+                                    "<ul class=\"pagination\">" + pages + "</ul>" +
                                 "</div>" +
                             "</div>" +
                         "</div>"
