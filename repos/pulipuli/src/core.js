@@ -70,6 +70,16 @@ $(document).ready(function () {
                 data: JSON.stringify(jsondata[vcode]["videos"][pid]),
                 success: function (data) {
                     var link = data.authrequest[1];
+                    if (pid == 0) {
+                        $("#prev-nav").addClass("disabled");
+                        $("#next-btn").attr("href", "?vcode=" + vcode + "&pid=" + (pid + 2));
+                    } else if (pid == jsondata[vcode]["videos"].length - 1) {
+                        $("#next-nav").addClass("disabled");
+                        $("#prev-btn").attr("href", "?vcode=" + vcode + "&pid=" + pid);
+                    } else {
+                        $("#prev-btn").attr("href", "?vcode=" + vcode + "&pid=" + pid);
+                        $("#next-btn").attr("href", "?vcode=" + vcode + "&pid=" + (pid + 2));
+                    }
                     $("#player").show();
                     $("#vinfo").show();
                     $("#dl-btn").show();
