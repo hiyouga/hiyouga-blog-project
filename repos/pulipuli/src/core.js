@@ -55,7 +55,7 @@ $(document).ready(function () {
                                 "<div class=\"card-body\">" +
                                     "<h5 class=\"card-title\">" + jsondata[key]["title"] + "</h5>" +
                                     "<p class=\"card-text\">" + jsondata[key]["desc"] + "</p>" +
-                                    "<ul class=\"pagination\">" + pages + "</ul>" +
+                                    "<ul class=\"pagination flex-wrap\">" + pages + "</ul>" +
                                 "</div>" +
                             "</div>" +
                         "</div>"
