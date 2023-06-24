@@ -44,7 +44,7 @@ $(document).ready(function () {
         if (jsondata[vcode] == undefined) {
             for (var key in jsondata) {
                 if (jsondata[key]["is_public"] == true) {
-                    buttons = "";
+                    var buttons = String();
                     for (var i = 0; i < jsondata[key]["videos"].length; i++) {
                         buttons += "<a class=\"btn btn-primary\" href=\"?vcode=" + key + "&pid=" + i + "\">" + i + "</a>";
                     }
