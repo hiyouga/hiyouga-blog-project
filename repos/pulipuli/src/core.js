@@ -80,14 +80,14 @@ $(document).ready(function () {
                         $("#prev-btn").attr("href", "?vcode=" + vcode + "&pid=" + pid);
                         $("#next-btn").attr("href", "?vcode=" + vcode + "&pid=" + (pid + 2));
                     }
+                    $("#dl-btn").attr("href", link);
+                    $("#vtitle").text(jsondata[vcode]["title"] + " " + (pid + 1));
+                    $("#vdesc").html(autolink(jsondata[vcode]["desc"]));
+                    $("#vcontent").attr("src", link);
+                    $("#player").attr("data-poster", jsondata[vcode]["poster"]);
                     $("#player").show();
                     $("#vinfo").show();
                     $("#dl-btn").show();
-                    $("#dl-btn").attr("href", link);
-                    $("#vcontent").attr("src", link);
-                    $("#player").attr("data-poster", jsondata[vcode]["poster"]);
-                    $("#vtitle").text(jsondata[vcode]["title"]);
-                    $("#vdesc").html(autolink(jsondata[vcode]["desc"]));
                     new Plyr("#player");
                 },
                 error: function (xhr) {
