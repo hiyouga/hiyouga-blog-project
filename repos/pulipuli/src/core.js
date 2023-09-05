@@ -67,6 +67,9 @@ $(document).ready(function () {
                 type: "POST",
                 dataType: "json",
                 url: "https://bhpan.buaa.edu.cn/api/efast/v1/file/osdownload",
+                headers: {
+                    "Authorization": "Bearer " + jsondata[vcode]["videos"][pid]["token"]
+                },
                 data: JSON.stringify(jsondata[vcode]["videos"][pid]),
                 success: function (data) {
                     var link = data.authrequest[1];
