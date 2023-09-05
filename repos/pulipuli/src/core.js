@@ -66,7 +66,7 @@ $(document).ready(function () {
             $.ajax({
                 type: "POST",
                 dataType: "json",
-                url: "https://bhpan.buaa.edu.cn/api/v1/link?method=osdownload",
+                url: "https://bhpan.buaa.edu.cn/api/efast/v1/file/osdownload",
                 data: JSON.stringify(jsondata[vcode]["videos"][pid]),
                 success: function (data) {
                     var link = data.authrequest[1];
