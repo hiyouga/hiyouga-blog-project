@@ -30,16 +30,9 @@ function autolink(text) {
     return text
 }
 
-function raise() {
-    $('#tips').modal("show");
-    setTimeout(function () {
-        window.location.reload();
-    }, 3000);
-}
-
 $(document).ready(function () {
     var vcode = GetUrlValue("vcode");
-    var pid = Number(GetUrlValue("pid")) - 1;
+    var pid = Number(GetUrlValue("pid"));
     $.getJSON("src/video.json", function (jsondata) {
         if (jsondata[vcode] == undefined) {
             for (var key in jsondata) {
@@ -68,23 +61,23 @@ $(document).ready(function () {
                 dataType: "json",
                 url: "https://bhpan.buaa.edu.cn/api/efast/v1/file/osdownload",
                 headers: {
-                    "Authorization": "Bearer " + jsondata[vcode]["videos"][pid]["token"]
+                    "Authorization": "Bearer " + jsondata[vcode]["videos"][pid-1]["token"]
                 },
-                data: JSON.stringify(jsondata[vcode]["videos"][pid]),
+                data: JSON.stringify(jsondata[vcode]["videos"][pid-1]),
                 success: function (data) {
                     var link = data.authrequest[1];
-                    if (pid == 0) {
+                    if (pid == 1) {
                         $("#prev-nav").addClass("disabled");
-                        $("#next-btn").attr("href", "?vcode=" + vcode + "&pid=" + (pid + 2));
-                    } else if (pid == jsondata[vcode]["videos"].length - 1) {
+                        $("#next-btn").attr("href", "?vcode=" + vcode + "&pid=" + (pid + 1));
+                    } else if (pid == jsondata[vcode]["videos"].length) {
                         $("#next-nav").addClass("disabled");
-                        $("#prev-btn").attr("href", "?vcode=" + vcode + "&pid=" + pid);
+                        $("#prev-btn").attr("href", "?vcode=" + vcode + "&pid=" + (pid - 1));
                     } else {
-                        $("#prev-btn").attr("href", "?vcode=" + vcode + "&pid=" + pid);
-                        $("#next-btn").attr("href", "?vcode=" + vcode + "&pid=" + (pid + 2));
+                        $("#prev-btn").attr("href", "?vcode=" + vcode + "&pid=" + (pid - 1));
+                        $("#next-btn").attr("href", "?vcode=" + vcode + "&pid=" + (pid + 1));
                     }
                     $("#dl-btn").attr("href", link);
-                    $("#vtitle").text(jsondata[vcode]["title"] + " " + (pid + 1));
+                    $("#vtitle").text(jsondata[vcode]["title"] + " " + pid);
                     $("#vdesc").html(autolink(jsondata[vcode]["desc"]));
                     $("#vcontent").attr("src", link);
                     $("#player").attr("data-poster", jsondata[vcode]["poster"]);
@@ -95,7 +88,10 @@ $(document).ready(function () {
                 },
                 error: function (xhr) {
                     console.log(xhr.status + xhr.statusText);
-                    raise();
+                    $("#tips").modal("show");
+                    $("#back").click(function () {
+                        window.location.href = "?";
+                    });
                 }
             });
         }
