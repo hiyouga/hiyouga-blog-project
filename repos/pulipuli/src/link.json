@@ -1,10 +1,26 @@
 {
-    "tenten": {
-        "directory_link": "AA13282264877F42FF88CE85B479BE52B4",
-        "poster": "https://p.inari.site/guest/23-05/23/646c8ab96edb7.jpg",
-        "title": "THE iDOLM@STER Cinderella Girls U149",
-        "desc": "",
-        "category": "anime",
-        "is_public": true
-    }
+  "u149": {
+    "directory_link": "AA13282264877F42FF88CE85B479BE52B4",
+    "poster": "https://p.inari.site/guest/23-09/06/64f8408575f1b.jpg",
+    "title": "THE iDOLM@STER Cinderella Girls U149",
+    "desc": "喵萌奶茶屋1080p",
+    "category": "anime",
+    "is_public": true
+  },
+  "tenten": {
+    "directory_link": "AA732663B447724EBBB164B37DC2586EBB",
+    "poster": "https://p.inari.site/guest/23-05/23/646c8ab96edb7.jpg",
+    "title": "转生公主与天才千金的魔法革命",
+    "desc": "澄空学园&动漫国字幕组1080p",
+    "category": "anime",
+    "is_public": true
+  },
+  "bokuyaba": {
+    "directory_link": "AA3494361A8A2445FEB3462412A2B53AE7",
+    "poster": "https://p.inari.site/guest/23-06/24/6496755fcb549.jpg",
+    "title": "我内心的糟糕念头",
+    "desc": "喵萌奶茶屋1080p",
+    "category": "anime",
+    "is_public": true
+  }
 }
